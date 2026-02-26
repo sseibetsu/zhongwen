@@ -16,4 +16,14 @@ export const routes: RouteRecordRaw[] = [
     name: 'text-reader',
     component: () => import('./text-reader/TextReaderPage.vue'),
   },
+  {
+    path: '/vocabulary',
+    name: 'vocabulary',
+    component: () => import('./vocabulary/VocabularyPage.vue'),
+  },
+  {
+    path: '/vocabulary/:id',
+    name: 'vocabulary-dict',
+    component: () => import('./vocabulary/VocabularyDictPage.vue'),
+  },
 ]

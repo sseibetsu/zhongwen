@@ -5,6 +5,8 @@ import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
 import { HanziStrokesOrder } from '@/shared/ui/HanziStrokesOrder'
 import { Checkbox } from '@/shared/ui/Checkbox'
+import { TTSPlayer } from '@/shared/ui/TTSPlayer'
+import { hasElevenLabsKey, speakWithElevenLabs } from '@/shared/lib/elevenlabs'
 
 type Word = {
   hanzi: string
@@ -34,6 +36,11 @@ const textId = computed(() => route.params.id as string)
 const textData = computed<TextData | null>(() => {
   const entry = Object.entries(modules).find(([path]) => path.endsWith(`${textId.value}.json`))
   return entry?.[1].default ?? null
+})
+
+const fullText = computed(() => {
+  if (!textData.value) return ''
+  return textData.value.text.words.map((w) => w.hanzi).join('')
 })
 
 const tooltipRefs = ref<(HTMLElement | null)[]>([])
@@ -69,6 +76,15 @@ function handleMouseLeave(index: number) {
   if (!el) return
   el.style.transform = 'translateX(-50%)'
 }
+
+async function handleWordClick(word: Word) {
+  if (word.type === 'punct' || !hasElevenLabsKey()) return
+  try {
+    await speakWithElevenLabs(word.hanzi)
+  } catch {
+    // Ignore playback errors for single words
+  }
+}
 </script>
 
 <template>
@@ -102,9 +118,13 @@ function handleMouseLeave(index: number) {
 
             <span
               v-else
-              class="relative flex flex-col items-center group"
+              class="relative flex flex-col items-center group cursor-pointer select-none"
+              role="button"
+              tabindex="0"
               @mouseenter="handleMouseEnter(index)"
               @mouseleave="handleMouseLeave(index)"
+              @click="handleWordClick(word)"
+              @keydown.enter.space.prevent="handleWordClick(word)"
             >
               <div
                 :ref="(el) => setTooltipRef(el as HTMLElement | null, index)"
@@ -137,6 +157,13 @@ function handleMouseLeave(index: number) {
             </span>
           </template>
         </div>
+
+        <TTSPlayer
+          v-if="textData"
+          :title="textData.title"
+          :text="fullText"
+          class="mt-8"
+        />
       </div>
     </div>
   </div>

@@ -16,12 +16,15 @@ import { Link } from '@/shared/ui/Link'
           class="h-full"
         />
       </Link>
-      <Card
-        title="Vocabulary"
-        description="Learn words by HSK level"
-        icon="lucide:layers"
-        color="#c7b8ea"
-      />
+      <Link to="/vocabulary" class="block" :hover="true">
+        <Card
+          title="Vocabulary"
+          description="Learn words by HSK level"
+          icon="lucide:layers"
+          color="#c7b8ea"
+          class="h-full"
+        />
+      </Link>
       <Card
         title="Listening"
         description="Audio with transcription"

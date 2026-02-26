@@ -4,6 +4,7 @@ import { Card } from '@/shared/ui/Card'
 import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
 import { Select } from '@/shared/ui/Select'
+import { getCardStyle } from '@/shared/lib/cardStyles'
 
 type TextMeta = {
   title: string
@@ -20,15 +21,6 @@ type Item = {
   color: string
 }
 
-const icons = [
-  'lucide:book-open',
-  'lucide:bookmark',
-  'lucide:file-text',
-  'lucide:quote',
-  'lucide:scroll-text',
-] as const
-const colors = ['#b5ead7', '#c7b8ea', '#e8d5b7', '#f4c2c2', '#d7ebe9'] as const
-
 const rawModules = import.meta.glob('@/assets/texts/*.json', {
   eager: true,
 }) as Record<string, { default: TextMeta }>
@@ -37,14 +29,15 @@ const items: Item[] = Object.entries(rawModules).map(([path, mod], index) => {
   const idWithExt = path.split('/').pop() || ''
   const id = idWithExt.replace('.json', '')
   const data = mod.default
+  const { icon, color } = getCardStyle(index, 'reading')
 
   return {
     id,
     title: data.title,
     description: data.description,
     level: data.level,
-    icon: icons[index % icons.length] as string,
-    color: colors[index % colors.length] as string,
+    icon,
+    color,
   }
 })
 

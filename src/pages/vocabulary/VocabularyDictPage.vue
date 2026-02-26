@@ -29,9 +29,7 @@ const modules = import.meta.glob('@/assets/dictionaries/*.json', {
 const dictId = computed(() => route.params.id as string)
 
 const words = computed<Word[]>(() => {
-  const entry = Object.entries(modules).find(([path]) =>
-    path.endsWith(`${dictId.value}.json`),
-  )
+  const entry = Object.entries(modules).find(([path]) => path.endsWith(`${dictId.value}.json`))
   return entry?.[1]?.default ?? []
 })
 
@@ -70,74 +68,83 @@ async function handleSpeak(word: Word, index: number) {
 
         <div class="rounded-lg border border-border overflow-hidden">
           <div class="overflow-x-auto">
-            <table class="w-full min-w-[28rem] border-collapse">
-            <thead>
-              <tr class="bg-muted/50">
-                <th class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground">
-                  Hanzi
-                </th>
-                <th class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground">
-                  Pinyin
-                </th>
-                <th class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground">
-                  Translation
-                </th>
-                <th class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground">
-                  Strokes
-                </th>
-                <th class="w-9 sm:w-12 px-2 sm:px-4 py-2 sm:py-3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(word, index) in words"
-                :key="index"
-                class="border-t border-border hover:bg-muted/30 transition-colors"
-              >
-                <td class="px-2 sm:px-4 py-2 sm:py-3 text-base sm:text-xl text-foreground font-medium">
-                  {{ word.hanzi }}
-                </td>
-                <td class="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-base text-muted-foreground">
-                  {{ word.pinyin }}
-                </td>
-                <td class="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-base text-foreground">
-                  {{ word.translation }}
-                </td>
-                <td class="px-2 sm:px-4 py-2 sm:py-3">
-                  <div class="flex gap-0.5 sm:gap-1 shrink-0 flex-nowrap scale-75 sm:scale-100 origin-left">
-                    <HanziStrokesOrder
-                      v-for="char in word.hanzi.split('')"
-                      :key="char"
-                      :hanzi="char"
-                    />
-                  </div>
-                </td>
-                <td class="px-2 sm:px-4 py-2 sm:py-3">
-                  <button
-                    type="button"
-                    class="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-muted transition-colors disabled:opacity-50 shrink-0"
-                    :disabled="!hasElevenLabsKey() || speakingIndex === index"
-                    :aria-label="`Play pronunciation for ${word.hanzi}`"
-                    @click="handleSpeak(word, index)"
+            <table class="w-full min-w-md border-collapse">
+              <thead>
+                <tr class="bg-muted/50">
+                  <th
+                    class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground"
                   >
-                    <Icon
-                      v-if="speakingIndex === index"
-                      icon="mdi:loading"
-                      class="h-4 w-4 sm:h-5 sm:w-5 animate-spin"
-                    />
-                    <Icon v-else icon="lucide:volume-2" class="h-4 w-4 sm:h-5 sm:w-5" />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    Hanzi
+                  </th>
+                  <th
+                    class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground"
+                  >
+                    Pinyin
+                  </th>
+                  <th
+                    class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground"
+                  >
+                    Translation
+                  </th>
+                  <th
+                    class="text-left px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground"
+                  >
+                    Strokes
+                  </th>
+                  <th class="w-9 sm:w-12 px-2 sm:px-4 py-2 sm:py-3"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(word, index) in words"
+                  :key="index"
+                  class="border-t border-border hover:bg-muted/30 transition-colors"
+                >
+                  <td
+                    class="px-2 sm:px-4 py-2 sm:py-3 text-base sm:text-xl text-foreground font-medium"
+                  >
+                    {{ word.hanzi }}
+                  </td>
+                  <td class="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-base text-muted-foreground">
+                    {{ word.pinyin }}
+                  </td>
+                  <td class="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-base text-foreground">
+                    {{ word.translation }}
+                  </td>
+                  <td class="px-2 sm:px-4 py-2 sm:py-3">
+                    <div
+                      class="flex gap-0.5 sm:gap-1 shrink-0 flex-nowrap scale-75 sm:scale-100 origin-left"
+                    >
+                      <HanziStrokesOrder
+                        v-for="char in word.hanzi.split('')"
+                        :key="char"
+                        :hanzi="char"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-2 sm:px-4 py-2 sm:py-3">
+                    <button
+                      type="button"
+                      class="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-muted transition-colors disabled:opacity-50 shrink-0"
+                      :disabled="!hasElevenLabsKey() || speakingIndex === index"
+                      :aria-label="`Play pronunciation for ${word.hanzi}`"
+                      @click="handleSpeak(word, index)"
+                    >
+                      <Icon
+                        v-if="speakingIndex === index"
+                        icon="mdi:loading"
+                        class="h-4 w-4 sm:h-5 sm:w-5 animate-spin"
+                      />
+                      <Icon v-else icon="lucide:volume-2" class="h-4 w-4 sm:h-5 sm:w-5" />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <p
-          v-if="!hasElevenLabsKey()"
-          class="text-xs sm:text-sm text-muted-foreground"
-        >
+        <p v-if="!hasElevenLabsKey()" class="text-xs sm:text-sm text-muted-foreground">
           Add <code class="rounded bg-muted px-1">VITE_ELEVENLABS_API_KEY</code> to your
           <code class="rounded bg-muted px-1">.env</code> to enable audio playback.
         </p>

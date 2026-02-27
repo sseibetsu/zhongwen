@@ -14,16 +14,16 @@ const mainCards = [
     description: 'Learn words by HSK level',
     to: '/vocabulary' as const,
   },
-  {
-    title: 'Listening',
-    description: 'Audio with transcription',
-    to: null as string | null,
-  },
-  {
-    title: 'Writing',
-    description: 'Practice characters',
-    to: null as string | null,
-  },
+  // {
+  //   title: 'Listening',
+  //   description: 'Audio with transcription',
+  //   to: null as string | null,
+  // },
+  // {
+  //   title: 'Writing',
+  //   description: 'Practice characters',
+  //   to: null as string | null,
+  // },
 ].map((card, index) => ({
   ...card,
   ...getCardStyle(index, 'main'),
@@ -35,12 +35,7 @@ const mainCards = [
     <h1 class="text-2xl font-semibold text-foreground mb-6">大家好</h1>
     <div class="grid grid-cols-2 gap-3 w-full max-w-sm">
       <template v-for="card in mainCards" :key="card.title">
-        <Link
-          v-if="card.to"
-          :to="card.to"
-          class="block"
-          :hover="true"
-        >
+        <Link v-if="card.to" :to="card.to" class="block" :hover="true">
           <Card
             :title="card.title"
             :description="card.description"
@@ -49,14 +44,14 @@ const mainCards = [
             class="h-full"
           />
         </Link>
-        <Card
+        <!-- <Card
           v-else
           :title="card.title"
           :description="card.description"
           :icon="card.icon"
           :color="card.color"
           class="h-full"
-        />
+        /> -->
       </template>
     </div>
   </div>

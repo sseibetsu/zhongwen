@@ -107,18 +107,20 @@ async function handleWordClick(word: Word) {
         </p>
         <Checkbox v-model="showPinyin" label="Pinyin" />
 
-        <div class="mt-16 inline-flex flex-wrap gap-x-5 gap-y-4 leading-relaxed">
+        <div class="mt-16 inline-flex flex-wrap gap-y-4 leading-relaxed">
           <template v-for="(word, index) in textData.text.words" :key="index">
             <span
               v-if="word.type === 'punct'"
-              class="flex flex-col justify-end items-end text-2xl text-foreground leading-none px-0.5"
+              class="flex flex-col justify-end items-end text-2xl text-foreground leading-none px-0.5 shrink-0"
+              :class="textData.text.words[index + 1]?.type === 'punct' ? 'mr-2' : 'mr-5'"
             >
               {{ word.hanzi }}
             </span>
 
             <span
               v-else
-              class="relative flex flex-col items-center group cursor-pointer select-none"
+              class="relative flex flex-col items-center group cursor-pointer select-none shrink-0"
+              :class="textData.text.words[index + 1]?.type === 'punct' ? 'mr-2' : 'mr-5'"
               role="button"
               tabindex="0"
               @mouseenter="handleMouseEnter(index)"
@@ -158,12 +160,7 @@ async function handleWordClick(word: Word) {
           </template>
         </div>
 
-        <TTSPlayer
-          v-if="textData"
-          :title="textData.title"
-          :text="fullText"
-          class="mt-8"
-        />
+        <TTSPlayer v-if="textData" :title="textData.title" :text="fullText" class="mt-8" />
       </div>
     </div>
   </div>

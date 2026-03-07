@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { Icon } from '@iconify/vue'
 import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
 import { useUserStore } from '@/stores/user'
@@ -8,6 +9,8 @@ import { HanziStrokesOrder } from '@/shared/ui/HanziStrokesOrder'
 import { Checkbox } from '@/shared/ui/Checkbox'
 import { TTSPlayer } from '@/shared/ui/TTSPlayer'
 import { hasElevenLabsKey, speakWithElevenLabs } from '@/shared/lib/elevenlabs'
+
+type WordMode = 'speak' | 'stroke'
 
 type Word = {
   hanzi: string
@@ -47,6 +50,8 @@ const fullText = computed(() => {
 
 const tooltipRefs = ref<(HTMLElement | null)[]>([])
 const showPinyin = ref(true)
+const wordMode = ref<WordMode>('speak')
+const activeTooltipIndex = ref<number | null>(null)
 
 function setTooltipRef(el: HTMLElement | null, index: number) {
   tooltipRefs.value[index] = el
@@ -79,14 +84,31 @@ function handleMouseLeave(index: number) {
   el.style.transform = 'translateX(-50%)'
 }
 
-async function handleWordClick(word: Word) {
-  if (word.type === 'punct' || !hasElevenLabsKey()) return
+async function handleWordClick(word: Word, index: number) {
+  if (word.type === 'punct') return
+  if (wordMode.value === 'stroke') {
+    activeTooltipIndex.value = activeTooltipIndex.value === index ? null : index
+    return
+  }
+  if (!hasElevenLabsKey()) return
   try {
     await speakWithElevenLabs(word.hanzi)
   } catch {
     // Ignore playback errors for single words
   }
 }
+
+function closeTooltip() {
+  activeTooltipIndex.value = null
+}
+
+onMounted(() => {
+  document.addEventListener('click', closeTooltip)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeTooltip)
+})
 
 const isRead = computed(() => userStore.isRead(textId.value))
 
@@ -119,8 +141,38 @@ function toggleMarkAsRead() {
             {{ isRead ? 'Mark as unread' : 'Mark as Read' }}
           </Button>
         </div>
+        <div class="flex md:hidden justify-end mt-2">
+          <div class="flex items-center gap-0.5 rounded-md border border-border bg-muted/50 p-0.5">
+            <button
+              type="button"
+              class="flex h-8 w-8 items-center justify-center rounded transition-colors"
+              :class="
+                wordMode === 'stroke'
+                  ? 'bg-background text-foreground shadow'
+                  : 'text-muted-foreground'
+              "
+              aria-label="Show stroke order on tap"
+              @click.stop="wordMode = 'stroke'"
+            >
+              <Icon icon="lucide:pen-line" class="text-lg" />
+            </button>
+            <button
+              type="button"
+              class="flex h-8 w-8 items-center justify-center rounded transition-colors"
+              :class="
+                wordMode === 'speak'
+                  ? 'bg-background text-foreground shadow'
+                  : 'text-muted-foreground'
+              "
+              aria-label="Play audio on tap"
+              @click.stop="wordMode = 'speak'"
+            >
+              <Icon icon="lucide:volume-2" class="text-lg" />
+            </button>
+          </div>
+        </div>
 
-        <div class="mt-16 inline-flex flex-wrap gap-y-4 leading-relaxed">
+        <div class="inline-flex flex-wrap gap-y-4 leading-relaxed">
           <template v-for="(word, index) in textData.text.words" :key="index">
             <span
               v-if="word.type === 'punct'"
@@ -138,12 +190,15 @@ function toggleMarkAsRead() {
               tabindex="0"
               @mouseenter="handleMouseEnter(index)"
               @mouseleave="handleMouseLeave(index)"
-              @click="handleWordClick(word)"
-              @keydown.enter.space.prevent="handleWordClick(word)"
+              @click.stop="handleWordClick(word, index)"
+              @keydown.enter.space.prevent="handleWordClick(word, index)"
             >
               <div
                 :ref="(el) => setTooltipRef(el as HTMLElement | null, index)"
-                class="pointer-events-none absolute -top-24 left-1/2 z-10 rounded-md bg-card px-3 py-2 text-sm text-foreground shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-150 max-w-[min(320px,calc(100vw-3rem))] text-left overflow-hidden"
+                class="pointer-events-none absolute -top-24 lg:-top-16 left-1/2 z-10 rounded-md bg-card px-3 py-2 text-sm text-foreground shadow-lg transition-opacity duration-150 max-w-[min(320px,calc(100vw-3rem))] text-left overflow-hidden"
+                :class="
+                  activeTooltipIndex === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                "
               >
                 <div class="flex items-center gap-3">
                   <div class="flex gap-1 shrink-0">

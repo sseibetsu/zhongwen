@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { useThemeStore } from '@/stores/theme'
+import { useUserStore } from '@/stores/user'
 import { Routing } from '@/pages/routing'
 
-const themeStore = useThemeStore()
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -12,10 +12,10 @@ const themeStore = useThemeStore()
       type="button"
       class="absolute top-3 right-3 z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground shadow hover:bg-muted transition-colors"
       aria-label="Toggle theme"
-      @click="themeStore.toggleTheme()"
+      @click="userStore.toggleTheme()"
     >
       <Icon
-        :icon="themeStore.theme === 'dark' ? 'lucide:sun' : 'lucide:moon'"
+        :icon="userStore.theme === 'dark' ? 'lucide:sun' : 'lucide:moon'"
         class="text-lg"
       />
     </button>

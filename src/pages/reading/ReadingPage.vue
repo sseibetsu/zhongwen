@@ -6,9 +6,11 @@ import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
 import { Select } from '@/shared/ui/Select'
 import { getCardStyle } from '@/shared/lib/cardStyles'
+import { useUserStore } from '@/stores/user'
 
 const route = useRoute()
 const router = useRouter()
+const userStore = useUserStore()
 
 type TextMeta = {
   title: string
@@ -161,6 +163,7 @@ watch(
             :description="item.description"
             :icon="item.icon"
             :color="item.color"
+            :read="userStore.isRead(item.id)"
             class="h-full"
           />
         </Link>

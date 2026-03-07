@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
+import { useUserStore } from '@/stores/user'
 import { HanziStrokesOrder } from '@/shared/ui/HanziStrokesOrder'
 import { Checkbox } from '@/shared/ui/Checkbox'
 import { TTSPlayer } from '@/shared/ui/TTSPlayer'
@@ -26,6 +27,7 @@ type TextData = {
 }
 
 const route = useRoute()
+const userStore = useUserStore()
 
 const modules = import.meta.glob('@/assets/texts/*.json', {
   eager: true,
@@ -85,6 +87,12 @@ async function handleWordClick(word: Word) {
     // Ignore playback errors for single words
   }
 }
+
+const isRead = computed(() => userStore.isRead(textId.value))
+
+function toggleMarkAsRead() {
+  userStore.toggleRead(textId.value)
+}
 </script>
 
 <template>
@@ -105,7 +113,12 @@ async function handleWordClick(word: Word) {
         <p class="text-sm text-muted-foreground">
           {{ textData.description }}
         </p>
-        <Checkbox v-model="showPinyin" label="Pinyin" />
+        <div class="flex flex-wrap justify-between items-center gap-3">
+          <Checkbox v-model="showPinyin" label="Pinyin" />
+          <Button type="button" class="px-3 py-1.5 text-sm" @click="toggleMarkAsRead()">
+            {{ isRead ? 'Mark as unread' : 'Mark as Read' }}
+          </Button>
+        </div>
 
         <div class="mt-16 inline-flex flex-wrap gap-y-4 leading-relaxed">
           <template v-for="(word, index) in textData.text.words" :key="index">

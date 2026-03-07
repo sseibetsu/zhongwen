@@ -12,6 +12,7 @@ const props = defineProps<{
 const API_KEY = import.meta.env.VITE_ELEVENLABS_API_KEY as string | undefined
 const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL' // Sarah - multilingual with Chinese (zh) support
 const MODEL_ID = 'eleven_multilingual_v2'
+const TTS_SPEED = 0.85
 
 const isPlaying = ref(false)
 const isLoading = ref(false)
@@ -54,6 +55,7 @@ async function fetchAudio(): Promise<string> {
     body: JSON.stringify({
       text: props.text,
       model_id: MODEL_ID,
+      voice_settings: { speed: TTS_SPEED },
     }),
   })
 
@@ -134,7 +136,10 @@ function togglePlayPause() {
   if (isPlaying.value) {
     pause()
   } else if (audio && cachedText.value === props.text) {
-    audio.play().then(() => (isPlaying.value = true)).catch(handleAudioError)
+    audio
+      .play()
+      .then(() => (isPlaying.value = true))
+      .catch(handleAudioError)
   } else {
     play()
   }
@@ -174,14 +179,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    :class="
-      cn(
-        'rounded-lg bg-card border border-border p-4 flex flex-col gap-3',
-        props.class,
-      )
-    "
-  >
+  <div :class="cn('rounded-lg bg-card border border-border p-4 flex flex-col gap-3', props.class)">
     <div v-if="!hasApiKey" class="rounded-md bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
       Add <code class="rounded bg-muted px-1">VITE_ELEVENLABS_API_KEY</code> to your
       <code class="rounded bg-muted px-1">.env</code> to enable ElevenLabs TTS.
@@ -199,24 +197,9 @@ onUnmounted(() => {
         :aria-label="isPlaying ? 'Pause' : 'Play'"
         @click="togglePlayPause"
       >
-        <Icon
-          v-if="isLoading"
-          icon="mdi:loading"
-          class="h-5 w-5 animate-spin"
-          aria-hidden
-        />
-        <Icon
-          v-else-if="isPlaying"
-          icon="mdi:pause"
-          class="h-5 w-5"
-          aria-hidden
-        />
-        <Icon
-          v-else
-          icon="mdi:play"
-          class="h-5 w-5 ml-0.5"
-          aria-hidden
-        />
+        <Icon v-if="isLoading" icon="mdi:loading" class="h-5 w-5 animate-spin" aria-hidden />
+        <Icon v-else-if="isPlaying" icon="mdi:pause" class="h-5 w-5" aria-hidden />
+        <Icon v-else icon="mdi:play" class="h-5 w-5 ml-0.5" aria-hidden />
       </button>
 
       <div class="min-w-0 flex-1">

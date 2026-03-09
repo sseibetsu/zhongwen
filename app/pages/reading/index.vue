@@ -155,7 +155,7 @@ watch(
         <Link
           v-for="item in paginatedItems"
           :key="item.id"
-          :to="`/text/${item.id}`"
+          :to="`/reading/${item.id}`"
           class="block"
           :hover="true"
         >

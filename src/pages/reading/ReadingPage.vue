@@ -36,10 +36,17 @@ const items: Item[] = Object.entries(rawModules).map(([path, mod], index) => {
 const levelOptions = ['HSK1', 'HSK2', 'HSK3', 'HSK4', 'HSK5', 'HSK6'] as const
 
 const selectedLevels = ref<string[]>([])
+const searchQuery = ref('')
 
 const filteredItems = computed(() => {
-  if (!selectedLevels.value.length) return items
-  return items.filter((item) => selectedLevels.value.includes(item.level))
+  const normalizedQuery = searchQuery.value.trim().toLowerCase()
+
+  return items.filter((item) => {
+    const matchesLevel = !selectedLevels.value.length || selectedLevels.value.includes(item.level)
+    const matchesSearch = !normalizedQuery || item.title.toLowerCase().includes(normalizedQuery)
+
+    return matchesLevel && matchesSearch
+  })
 })
 
 const pageSize = ref(8)
@@ -51,7 +58,7 @@ function updatePageSize() {
   } else if (window.matchMedia('(min-width: 768px)').matches) {
     pageSize.value = 9
   } else {
-    pageSize.value = 8
+    pageSize.value = 6
   }
 }
 
@@ -94,7 +101,7 @@ function goToPage(page: number) {
   currentPage.value = page
 }
 
-watch(selectedLevels, () => {
+watch([selectedLevels, searchQuery], () => {
   const q = { ...route.query }
   delete q.page
   router.replace({ path: route.path, query: q })
@@ -125,18 +132,26 @@ watch(
         </Link>
         <h1 class="text-2xl font-semibold text-foreground">Reading</h1>
       </div>
-      <div class="mb-4 flex items-center justify-between gap-3">
+      <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p class="text-sm text-muted-foreground">
           Texts to read with translations and stroke order.
         </p>
-        <Select
-          v-model="selectedLevels"
-          :options="levelOptions.map((l) => ({ label: l, value: l }))"
-          class="w-40"
-          placeholder="HSK level"
-        />
+        <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Search text name"
+            class="w-full rounded-md border border-border bg-card px-3 py-1.5 text-sm text-foreground shadow-sm placeholder:text-muted-foreground focus:border-accent focus:outline-none sm:w-56"
+          />
+          <Select
+            v-model="selectedLevels"
+            :options="levelOptions.map((l) => ({ label: l, value: l }))"
+            class="w-full sm:w-40"
+            placeholder="HSK level"
+          />
+        </div>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
         <Link
           v-for="item in paginatedItems"
           :key="item.id"
@@ -154,6 +169,9 @@ watch(
           />
         </Link>
       </div>
+      <p v-if="!paginatedItems.length" class="mt-4 text-sm text-muted-foreground">
+        No texts found.
+      </p>
 
       <div v-if="totalPages > 1" class="mt-6 flex flex-wrap items-center justify-center gap-2">
         <Button

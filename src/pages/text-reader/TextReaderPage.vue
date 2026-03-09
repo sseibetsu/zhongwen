@@ -8,11 +8,12 @@ import { useUserStore } from '@/stores/user'
 import { HanziStrokesOrder } from '@/shared/ui/HanziStrokesOrder'
 import { Checkbox } from '@/shared/ui/Checkbox'
 import { TTSPlayer } from '@/shared/ui/TTSPlayer'
-import { hasElevenLabsKey, speakWithElevenLabs } from '@/shared/lib/elevenlabs'
+import { useHasElevenLabs, speakWithElevenLabs } from '@/shared/lib/elevenlabs'
 import type { TextData, TextWord as Word, WordMode } from '@/shared/lib/types'
 
 const route = useRoute()
 const userStore = useUserStore()
+const hasElevenLabs = useHasElevenLabs()
 
 const modules = import.meta.glob('@/assets/texts/*.json', {
   eager: true,
@@ -72,7 +73,7 @@ async function handleWordClick(word: Word, index: number) {
     activeTooltipIndex.value = activeTooltipIndex.value === index ? null : index
     return
   }
-  if (!hasElevenLabsKey()) return
+  if (!hasElevenLabs) return
   try {
     await speakWithElevenLabs(word.hanzi)
   } catch {

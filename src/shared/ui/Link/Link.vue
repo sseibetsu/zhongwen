@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, type HTMLAttributes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
-import { RouterLink } from 'vue-router'
 import { cn } from '@/shared/ui/utils'
 
 const props = withDefaults(
@@ -40,7 +39,7 @@ const classes = computed(() => {
   <a v-if="typeof to === 'string' && isExternal" :target="target" :href="to" :class="classes">
     <slot />
   </a>
-  <RouterLink v-else :target="target" :to="to" :class="classes">
+  <NuxtLink v-else :target="target" :to="to" :class="classes">
     <slot />
-  </RouterLink>
+  </NuxtLink>
 </template>

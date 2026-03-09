@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
+import { useHasElevenLabs } from '@/shared/lib/elevenlabs'
 import { cn } from '@/shared/ui/utils'
 
 const props = defineProps<{
@@ -9,10 +10,8 @@ const props = defineProps<{
   class?: string
 }>()
 
-const API_KEY = import.meta.env.VITE_ELEVENLABS_API_KEY as string | undefined
-const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL' // Sarah - multilingual with Chinese (zh) support
-const MODEL_ID = 'eleven_multilingual_v2'
 const TTS_SPEED = 0.85
+const hasApiKey = useHasElevenLabs()
 
 const isPlaying = ref(false)
 const isLoading = ref(false)
@@ -34,37 +33,16 @@ const formatTime = (seconds: number) => {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
-const hasApiKey = computed(() => !!API_KEY?.trim())
-
 async function fetchAudio(): Promise<string> {
   if (cachedAudioUrl.value && cachedText.value === props.text) {
     return cachedAudioUrl.value
   }
 
-  if (!API_KEY) {
-    throw new Error('API key not configured. Add VITE_ELEVENLABS_API_KEY to .env')
-  }
-
-  const url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=mp3_44100_128`
-  const res = await fetch(url, {
+  const blob = await $fetch<Blob>('/api/tts', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'xi-api-key': API_KEY,
-    },
-    body: JSON.stringify({
-      text: props.text,
-      model_id: MODEL_ID,
-      voice_settings: { speed: TTS_SPEED },
-    }),
+    body: { text: props.text, speed: TTS_SPEED },
+    responseType: 'blob',
   })
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}))
-    throw new Error(err.detail?.message || err.message || `API error: ${res.status}`)
-  }
-
-  const blob = await res.blob()
   if (cachedAudioUrl.value) URL.revokeObjectURL(cachedAudioUrl.value)
   cachedAudioUrl.value = URL.createObjectURL(blob)
   cachedText.value = props.text
@@ -181,7 +159,7 @@ onUnmounted(() => {
 <template>
   <div :class="cn('rounded-lg bg-card border border-border p-4 flex flex-col gap-3', props.class)">
     <div v-if="!hasApiKey" class="rounded-md bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
-      Add <code class="rounded bg-muted px-1">VITE_ELEVENLABS_API_KEY</code> to your
+      Add <code class="rounded bg-muted px-1">NUXT_ELEVENLABS_API_KEY</code> to your
       <code class="rounded bg-muted px-1">.env</code> to enable ElevenLabs TTS.
     </div>
 

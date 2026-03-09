@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+/* Tell Tailwind v4 where to scan for class names (paths relative to this file) */
+@source "../**/*.vue";
+@source "../../app/**/*.vue";
+
 @theme {
   --color-background: #151518;
   --color-foreground: #d7ebe9;
@@ -31,7 +35,7 @@ body {
   color: var(--color-foreground);
 }
 
-#app {
+#__nuxt {
   min-height: 100vh;
   display: flex;
   flex-direction: column;

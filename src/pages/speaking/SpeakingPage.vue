@@ -6,7 +6,7 @@ import { Card } from '@/shared/ui/Card'
 import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
 import { getCardStyle } from '@/shared/lib/cardStyles'
-import { hasElevenLabsKey, speakWithElevenLabs } from '@/shared/lib/elevenlabs'
+import { useHasElevenLabs, speakWithElevenLabs } from '@/shared/lib/elevenlabs'
 import { formatDictName } from '@/shared/lib/formatters'
 import type { Result, Word } from '@/shared/lib/types'
 import { transcribeChineseSpeech } from '@/pages/speaking/lib/transcribeChineseSpeech'
@@ -19,6 +19,7 @@ function pickRandom<T>(arr: T[], count: number): T[] {
 
 // ── route & view ─────────────────────────────────────────────────────────────
 const route = useRoute()
+const hasElevenLabs = useHasElevenLabs()
 const dictId = computed(() => (route.params.id as string) ?? '')
 const isModeSelect = computed(() => route.path === '/speaking')
 const isDictList = computed(() => route.path === '/speaking/words' && !dictId.value)
@@ -165,7 +166,7 @@ async function startRecording() {
           lastResult.value = 'correct'
         } else {
           lastResult.value = 'incorrect'
-          if (hasElevenLabsKey()) {
+          if (hasElevenLabs) {
             isSpeaking.value = true
             void speakWithElevenLabs(word.hanzi)
               .then(() => { isSpeaking.value = false })
@@ -205,7 +206,7 @@ function toggleRecording() {
 }
 
 async function speak() {
-  if (!currentWord.value || !hasElevenLabsKey() || isSpeaking.value) return
+  if (!currentWord.value || !hasElevenLabs || isSpeaking.value) return
   isSpeaking.value = true
   try {
     await speakWithElevenLabs(currentWord.value.hanzi)
@@ -389,7 +390,7 @@ function reveal() {
             <button
               type="button"
               class="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-muted text-foreground hover:bg-muted/70 transition-colors disabled:opacity-40"
-              :disabled="!hasElevenLabsKey() || isSpeaking"
+              :disabled="!hasElevenLabs || isSpeaking"
               aria-label="Play pronunciation"
               @click="speak"
             >

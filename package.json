@@ -1,40 +1,30 @@
 {
   "name": "zhongwen",
-  "version": "0.0.0",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
-    "format": "prettier --write --experimental-cli src/"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "type-check": "nuxt typecheck",
+    "format": "prettier --write --experimental-cli \"src/\" \"app/\""
   },
   "dependencies": {
     "@iconify/vue": "^5.0.0",
     "clsx": "^2.1.1",
+    "nuxt": "^4.3.1",
     "openai": "^6.25.0",
     "pinia": "^3.0.4",
     "tailwind-merge": "^3.5.0",
-    "vue": "^3.5.28",
-    "vue-router": "^5.0.2"
+    "vue": "^3.5.29",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",
-    "@tsconfig/node24": "^24.0.4",
-    "@types/node": "^24.10.13",
-    "@vitejs/plugin-vue": "^6.0.4",
-    "@vue/tsconfig": "^0.8.1",
-    "npm-run-all2": "^8.0.4",
-    "prettier": "3.8.1",
+    "h3": "2.0.1-rc.16",
     "tailwindcss": "^4.2.1",
-    "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-vue-devtools": "^8.0.6",
-    "vue-tsc": "^3.2.4"
-  },
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "typescript": "^5.9.3"
   }
 }

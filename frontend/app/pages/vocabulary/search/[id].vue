@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { pinyin } from 'pinyin-pro'
 import { useRoute } from 'vue-router'
 import { Link } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
@@ -41,10 +42,30 @@ const result = computed<{
 
 const strokeChars = computed(() => searchId.value.split('').filter(Boolean))
 
+const isLongPhrase = computed(() => searchId.value.trim().length >= 4)
+
 const selectedStrokeHanzi = ref<string | null>(null)
 const googleTranslation = ref<string | null>(null)
 const googleLoading = ref(false)
 const googleError = ref(false)
+
+const googlePinyin = computed(() => {
+  const query = searchId.value.trim()
+  if (!query) return null
+  return pinyin(query, {
+    toneType: 'symbol',
+    nonZh: 'spaced',
+  })
+})
+
+function decodeHtmlEntities(text: string): string {
+  return text
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+}
 
 watch(
   [result, searchId],
@@ -62,7 +83,7 @@ watch(
         method: 'POST',
         body: { text: searchId.value.trim() },
       })
-      googleTranslation.value = translation || null
+      googleTranslation.value = translation ? decodeHtmlEntities(translation) : null
     } catch {
       googleError.value = true
     } finally {
@@ -101,8 +122,8 @@ function closeStrokeModal() {
 
       <div class="space-y-4 sm:space-y-6">
         <div class="rounded-lg border border-border p-3 sm:p-4">
-          <div class="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4">
-            <div class="flex-1">
+          <div class="flex flex-col gap-4">
+            <div>
               <template v-if="result">
                 <div class="flex flex-col gap-2 sm:gap-3">
                   <div class="flex items-baseline gap-2">
@@ -116,7 +137,7 @@ function closeStrokeModal() {
                   <p class="text-sm sm:text-base text-foreground">
                     {{ result.word.translation }}
                   </p>
-                  <p class="text-xs sm:text-sm text-muted-foreground">
+                  <p v-if="!isLongPhrase" class="text-xs sm:text-sm text-muted-foreground">
                     Level:
                     <span class="font-medium text-foreground">{{ result.level }}</span>
                   </p>
@@ -127,6 +148,12 @@ function closeStrokeModal() {
                   <div class="flex items-baseline gap-2">
                     <span class="text-lg sm:text-2xl font-semibold text-foreground">
                       {{ searchId }}
+                    </span>
+                    <span
+                      v-if="googlePinyin"
+                      class="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      {{ googlePinyin }}
                     </span>
                   </div>
                 <p v-if="googleLoading" class="text-sm sm:text-base text-muted-foreground">
@@ -147,7 +174,7 @@ function closeStrokeModal() {
                 <p v-else class="text-sm sm:text-base text-muted-foreground">
                   Translation not found.
                 </p>
-                  <p class="text-xs sm:text-sm text-muted-foreground">
+                  <p v-if="!isLongPhrase" class="text-xs sm:text-sm text-muted-foreground">
                     Level:
                     <span class="font-medium text-foreground">Unknown</span>
                   </p>
@@ -157,7 +184,7 @@ function closeStrokeModal() {
 
             <div
               v-if="strokeChars.length"
-              class="flex flex-wrap gap-2 sm:gap-3 items-center justify-start sm:justify-end"
+              class="flex flex-wrap gap-2 sm:gap-3 items-center justify-start"
             >
               <button
                 v-for="(char, index) in strokeChars"

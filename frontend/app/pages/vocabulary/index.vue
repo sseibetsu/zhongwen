@@ -31,6 +31,14 @@ const dictionaries = computed(() => {
 function handleSearch() {
   const value = searchQuery.value.trim()
   if (!value) return
+
+  if (value === '我操你吗') {
+    if (typeof window !== 'undefined') {
+      window.open('https://youtu.be/FumbPNRKTs8?si=jax27cejG7iBtmi1', '_blank')
+    }
+    return
+  }
+
   router.push(`/vocabulary/${encodeURIComponent(value)}`)
 }
 </script>

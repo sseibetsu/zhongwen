@@ -7,8 +7,8 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 503, statusMessage: 'Google API key not configured' })
   }
 
-  const body = (await readBody(event)) as { text?: string }
-  const text = body?.text?.trim()
+  const query = getQuery(event) as { text?: string }
+  const text = query.text?.trim()
   if (!text) {
     throw createError({ statusCode: 400, statusMessage: 'Missing text' })
   }
@@ -38,3 +38,4 @@ export default defineEventHandler(async (event) => {
 
   return { translation: translatedText }
 })
+

@@ -124,7 +124,8 @@ watch(
     googleTranslation.value = null
     try {
       const { translation } = await $fetch<{ translation: string }>('/api/translate', {
-        params: { text: key },
+        method: 'POST',
+        body: { text: key },
       })
       const normalized = translation ? decodeHtmlEntities(translation) : null
       googleTranslation.value = normalized

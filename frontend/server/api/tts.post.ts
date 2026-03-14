@@ -62,7 +62,13 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 503, statusMessage: 'ElevenLabs API key not configured' })
   }
 
-  const body = (await readBody(event)) as { text?: string; slug?: string }
+  const raw = await new Promise<string>((resolve, reject) => {
+    let data = ''
+    event.node.req.on('data', (chunk: Buffer) => (data += chunk.toString()))
+    event.node.req.on('end', () => resolve(data))
+    event.node.req.on('error', reject)
+  })
+  const body = JSON.parse(raw || '{}') as { text?: string; slug?: string }
   const text = body?.text?.trim()
   if (!text) {
     throw createError({ statusCode: 400, statusMessage: 'Missing text' })

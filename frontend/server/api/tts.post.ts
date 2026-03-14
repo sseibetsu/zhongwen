@@ -82,7 +82,7 @@ export default defineEventHandler(async (event) => {
     const cached = await getFromMinio(minio, bucket, key)
     if (cached) {
       console.log('[TTS] cache hit:', key)
-      setResponseHeaders(event, { 'Content-Type': 'audio/mpeg' })
+      setHeader(event, 'Content-Type', 'audio/mpeg')
       return cached
     }
     console.log('[TTS] cache miss, generating...')
@@ -120,6 +120,6 @@ export default defineEventHandler(async (event) => {
     .then(() => console.log('[TTS] saved to MinIO:', key))
     .catch((err) => console.warn('[TTS] MinIO write error:', err))
 
-  setResponseHeaders(event, { 'Content-Type': 'audio/mpeg' })
+  setHeader(event, 'Content-Type', 'audio/mpeg')
   return audioBuffer
 })

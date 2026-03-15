@@ -32,11 +32,10 @@ function handleSearch() {
   if (!value) return;
   if (!/^[\u4e00-\u9fff\u3400-\u4dbf]+$/.test(value)) return;
 
-  if (value === "我操你吗") {
+  if (value === "我操你妈") {
     if (typeof window !== "undefined") {
       window.open("https://youtu.be/FumbPNRKTs8?si=jax27cejG7iBtmi1", "_blank");
     }
-    return;
   }
 
   router.push(`/vocabulary/search/${encodeURIComponent(value)}`);

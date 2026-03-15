@@ -9,6 +9,9 @@ export default defineConfig({
       functions: ["cn", "clsx"],
     },
   },
+  staged: {
+    "*.{js,ts,tsx,vue,svelte}": "vp check --fix",
+  },
   lint: {
     options: {
       typeAware: true,

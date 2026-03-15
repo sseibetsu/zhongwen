@@ -5,7 +5,7 @@ const ttsCache = new Map<string, Blob>();
 
 /** Use in components: const hasTts = useHasElevenLabs() */
 export function useHasElevenLabs() {
-  return !!useRuntimeConfig().public.hasElevenLabs;
+  return true;
 }
 
 function playBlob(blob: Blob) {

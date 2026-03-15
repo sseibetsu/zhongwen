@@ -50,9 +50,7 @@ function handleSearch() {
   <div class="flex min-h-screen flex-col items-center px-3 py-4 sm:px-4 sm:py-8">
     <div class="w-full max-w-xl">
       <div class="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
-        <Link to="/" :hover="true" class="shrink-0">
-          <Button class="px-2 py-1 text-xs sm:text-sm">&larr;</Button>
-        </Link>
+        <BackButton />
         <h1 class="text-xl font-semibold text-foreground sm:text-2xl">Vocabulary</h1>
       </div>
       <div class="mb-4 space-y-2 sm:mb-6">

@@ -3,7 +3,6 @@ import { Icon } from "@iconify/vue";
 import { computed, ref } from "vue";
 
 import HanziStrokesOrder from "~/components/HanziStrokesOrder.vue";
-import { Link } from "~/components/ui/link";
 import { useDictionaryModules } from "~/composables/useDictionaries";
 import { useHasElevenLabs, speakWithElevenLabs } from "~/composables/useElevenLabs";
 import { formatDictName } from "~/lib/formatters";
@@ -58,9 +57,7 @@ async function handleSpeak(word: Word, index: number) {
       </p>
       <div v-else class="space-y-3 sm:space-y-4">
         <div class="flex items-center gap-2 sm:gap-3">
-          <Link to="/vocabulary" :hover="true" class="shrink-0">
-            <Button class="px-2 py-1 text-xs sm:text-sm">&larr;</Button>
-          </Link>
+          <BackButton />
           <h1 class="text-xl font-semibold text-foreground sm:text-2xl">
             {{ dictTitle }}
           </h1>

@@ -4,7 +4,6 @@ import { computed, onMounted, onUnmounted, ref } from "vue";
 
 import HanziStrokesOrder from "~/components/HanziStrokesOrder.vue";
 import { TTSPlayer } from "~/components/tts-player";
-import { Link } from "~/components/ui/link";
 import { useHasElevenLabs, speakWithElevenLabs } from "~/composables/useElevenLabs";
 import { useTextModules } from "~/composables/useTexts";
 import type { TextData, TextWord as Word, WordMode } from "~/lib/types";
@@ -115,9 +114,7 @@ function toggleMarkAsRead() {
       <div v-else class="space-y-4">
         <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-3">
-            <Link to="/reading" :hover="true" class="shrink-0">
-              <Button class="px-2 py-1 text-sm">&larr;</Button>
-            </Link>
+            <BackButton />
             <h1 class="text-2xl font-semibold text-foreground">
               {{ textData.title }}
             </h1>

@@ -245,9 +245,7 @@ function reveal() {
     <!-- ── Mode select: /speaking ─────────────────────────────────────────── -->
     <div v-if="isModeSelect" class="w-full max-w-sm">
       <div class="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
-        <Link to="/" :hover="true" class="shrink-0">
-          <Button class="px-2 py-1 text-xs sm:text-sm">&larr;</Button>
-        </Link>
+        <BackButton />
         <h1 class="text-xl font-semibold text-foreground sm:text-2xl">Speaking</h1>
       </div>
       <p class="mb-4 text-xs text-muted-foreground sm:mb-6 sm:text-sm">Choose a practice mode.</p>
@@ -267,9 +265,7 @@ function reveal() {
     <!-- ── Dict list: /speaking/words ───────────────────────────────────────── -->
     <div v-else-if="isDictList" class="w-full max-w-xl">
       <div class="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
-        <Link to="/speaking" :hover="true" class="shrink-0">
-          <Button class="px-2 py-1 text-xs sm:text-sm">&larr;</Button>
-        </Link>
+        <BackButton />
         <h1 class="text-xl font-semibold text-foreground sm:text-2xl">Words</h1>
       </div>
       <p class="mb-4 text-xs text-muted-foreground sm:mb-6 sm:text-sm">
@@ -297,9 +293,7 @@ function reveal() {
     <!-- ── Sentences placeholder: /speaking/sentences ───────────────────────── -->
     <div v-else-if="isSentences" class="w-full max-w-sm">
       <div class="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
-        <Link to="/speaking" :hover="true" class="shrink-0">
-          <Button class="px-2 py-1 text-xs sm:text-sm">&larr;</Button>
-        </Link>
+        <BackButton />
         <h1 class="text-xl font-semibold text-foreground sm:text-2xl">Sentences</h1>
       </div>
       <div class="rounded-2xl border border-border bg-card p-8 text-center">
@@ -310,10 +304,10 @@ function reveal() {
     <!-- ── Practice: /speaking/words/:id ────────────────────────────────────── -->
     <div v-else-if="isPractice" class="flex w-full max-w-md flex-col gap-4">
       <div class="flex items-center gap-2 sm:gap-3">
-        <Link to="/speaking/words" :hover="true" class="shrink-0">
-          <Button class="px-2 py-1 text-xs sm:text-sm">&larr;</Button>
-        </Link>
-        <h1 class="text-xl font-semibold text-foreground sm:text-2xl">{{ dictTitle }}</h1>
+        <BackButton />
+        <h1 class="text-xl font-semibold text-foreground sm:text-2xl">
+          {{ dictTitle }}
+        </h1>
         <span class="ml-auto text-sm font-medium text-muted-foreground tabular-nums">
           {{ done ? queue.length : currentIndex + 1 }} / {{ queue.length }}
         </span>
@@ -406,7 +400,9 @@ function reveal() {
           >
             Heard: "{{ transcribedText }}"
           </p>
-          <p v-if="apiError" class="mt-0.5 text-xs text-red-400">{{ apiError }}</p>
+          <p v-if="apiError" class="mt-0.5 text-xs text-red-400">
+            {{ apiError }}
+          </p>
           <div class="mt-2 flex items-center gap-6">
             <button
               type="button"

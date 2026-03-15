@@ -143,9 +143,7 @@ watch(
   <div class="flex min-h-screen flex-col items-center px-4 py-8">
     <div class="w-full max-w-4xl">
       <div class="mb-4 flex items-center gap-3">
-        <Link to="/" :hover="true" class="shrink-0">
-          <Button class="px-2 py-1 text-sm">&larr;</Button>
-        </Link>
+        <BackButton />
         <h1 class="text-2xl font-semibold text-foreground">Reading</h1>
       </div>
       <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

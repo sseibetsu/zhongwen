@@ -1,8 +1,8 @@
 {
   "name": "@zhongwen/app",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

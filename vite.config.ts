@@ -2,6 +2,7 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   fmt: {
+    ignorePatterns: ["CHANGELOG.md"],
     sortImports: {},
     sortTailwindcss: {
       stylesheet: "./apps/zhongwen/app/assets/css/main.css",

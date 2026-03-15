@@ -50,5 +50,21 @@ const mainCards: MainCard[] = [
         />
       </template>
     </div>
+
+    <p class="mt-8 max-w-sm text-[10px] leading-snug text-muted-foreground">
+      This is open-source project. You can find the source code on
+      <a
+        href="https://github.com/vadimvalov/zhongwen"
+        target="_blank"
+        class="text-foreground"
+        >GitHub</a
+      >.
+    </p>
+    <p class="mt-2 text-[10px] leading-snug text-muted-foreground">
+      Any contributions are welcome. Contact me on
+      <a href="https://t.me/valovvadim" target="_blank" class="text-foreground"
+        >Telegram</a
+      >.
+    </p>
   </div>
 </template>

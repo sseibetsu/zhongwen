@@ -1,9 +1,13 @@
 name: Docker build
 
 on:
+  workflow_call:
+    inputs:
+      version:
+        required: false
+        type: string
   push:
-    tags:
-      - zhongwen/app-v*
+    branches: [main]
 
 jobs:
   build:
@@ -27,7 +31,9 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository_owner }}/zhongwen
           tags: |
-            type=match,pattern=zhongwen/app-v(.*),group=1
+            type=raw,value=${{ inputs.version }},enable=${{ inputs.version != '' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' && inputs.version == '' }}
+            type=sha,enable=${{ inputs.version == '' }}
 
       - uses: docker/build-push-action@v6
         with:

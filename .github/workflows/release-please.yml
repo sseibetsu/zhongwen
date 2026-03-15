@@ -1,4 +1,4 @@
-name: "Release, please"
+name: Release please
 
 on:
   push:
@@ -11,10 +11,14 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
+  packages: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      release-created: ${{ steps.release.outputs['apps/zhongwen--release_created'] }}
+      version: ${{ steps.release.outputs['apps/zhongwen--version'] }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -22,3 +26,10 @@ jobs:
           config-file: .release-please/config.json
           manifest-file: .release-please/manifest.json
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  docker:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release-created == 'true' }}
+    uses: ./.github/workflows/docker-build.yml
+    with:
+      version: ${{ needs.release-please.outputs.version }}

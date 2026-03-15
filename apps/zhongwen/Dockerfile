@@ -18,10 +18,14 @@ COPY . .
 ENV NITRO_PRESET=node_server
 RUN pnpm --filter @zhongwen/app build
 
-FROM node:22-slim AS runner
+FROM base AS runner
 WORKDIR /app
 COPY --from=build /app/apps/zhongwen/.output ./.output
+COPY --from=deps /app/apps/zhongwen/node_modules ./node_modules
+COPY --from=build /app/apps/zhongwen/package.json ./package.json
+COPY --from=build /app/apps/zhongwen/drizzle.config.ts ./drizzle.config.ts
+COPY --from=build /app/apps/zhongwen/server/database/migrations ./server/database/migrations
 ENV NODE_ENV=production
 ENV PORT=3000
 EXPOSE 3000
-CMD ["node", ".output/server/index.mjs"]
+CMD ["sh", "-c", "pnpm run db:migrate && pnpm start"]

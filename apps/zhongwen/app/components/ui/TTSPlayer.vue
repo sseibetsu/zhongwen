@@ -24,7 +24,9 @@ const cachedAudioUrl = ref<string | null>(null);
 const cachedText = ref("");
 
 const progress = computed(() => {
-  if (duration.value <= 0) return 0;
+  if (duration.value <= 0) {
+    return 0;
+  }
   return Math.min((currentTime.value / duration.value) * 100, 100);
 });
 
@@ -44,14 +46,18 @@ async function fetchAudio(): Promise<string> {
     body: { text: props.text, speed: TTS_SPEED, slug: props.slug },
     responseType: "blob",
   });
-  if (cachedAudioUrl.value) URL.revokeObjectURL(cachedAudioUrl.value);
+  if (cachedAudioUrl.value) {
+    URL.revokeObjectURL(cachedAudioUrl.value);
+  }
   cachedAudioUrl.value = URL.createObjectURL(blob);
   cachedText.value = props.text;
   return cachedAudioUrl.value;
 }
 
 function updateTime() {
-  if (!audio) return;
+  if (!audio) {
+    return;
+  }
   currentTime.value = audio.currentTime;
 }
 
@@ -86,7 +92,9 @@ function handleAudioError() {
 }
 
 async function play() {
-  if (!props.text.trim()) return;
+  if (!props.text.trim()) {
+    return;
+  }
 
   error.value = null;
   isLoading.value = true;
@@ -125,7 +133,9 @@ function togglePlayPause() {
 }
 
 function handleProgressClick(e: MouseEvent) {
-  if (!audio || duration.value <= 0) return;
+  if (!audio || duration.value <= 0) {
+    return;
+  }
   const bar = e.currentTarget as HTMLElement;
   const rect = bar.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -152,7 +162,9 @@ watch(
 
 onUnmounted(() => {
   pause();
-  if (cachedAudioUrl.value) URL.revokeObjectURL(cachedAudioUrl.value);
+  if (cachedAudioUrl.value) {
+    URL.revokeObjectURL(cachedAudioUrl.value);
+  }
   audio = null;
 });
 </script>

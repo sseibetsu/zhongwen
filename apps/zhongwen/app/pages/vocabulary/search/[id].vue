@@ -19,7 +19,9 @@ const result = computed<{
   level: string;
 } | null>(() => {
   const query = searchId.value.trim();
-  if (!query) return null;
+  if (!query) {
+    return null;
+  }
 
   for (const [path, mod] of Object.entries(modules)) {
     const filename = path.split("/").pop() || "";
@@ -50,9 +52,13 @@ const googleError = ref(false);
 
 function loadInitialCache(): Record<string, string> {
   try {
-    if (typeof window === "undefined") return {};
+    if (typeof window === "undefined") {
+      return {};
+    }
     const raw = localStorage.getItem("vocabulary-translation-cache");
-    if (!raw) return {};
+    if (!raw) {
+      return {};
+    }
     const parsed = JSON.parse(raw) as Record<string, string>;
     if (parsed && typeof parsed === "object") {
       return parsed;
@@ -81,7 +87,9 @@ function persistCache() {
 
 const googlePinyin = computed(() => {
   const query = searchId.value.trim();
-  if (!query) return null;
+  if (!query) {
+    return null;
+  }
   return pinyin(query, {
     toneType: "symbol",
     nonZh: "spaced",

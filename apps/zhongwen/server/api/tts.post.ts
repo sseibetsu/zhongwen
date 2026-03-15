@@ -6,8 +6,10 @@ type TtsBody = {
   text?: string;
 };
 
-function getObjectKey(text: string, slug?: string): string {
-  if (slug) return `${slug}.mp3`;
+function getObjectKey(text: string, slug?: string) {
+  if (slug) {
+    return `${slug}.mp3`;
+  }
   return `${text.trim().slice(0, 80)}.mp3`;
 }
 
@@ -46,7 +48,9 @@ export default defineEventHandler(async (event) => {
       setHeader(event, "Content-Type", "audio/mpeg");
       return cached;
     }
-    if (s3) console.log("[TTS] cache miss, generating...");
+    if (s3) {
+      console.log("[TTS] cache miss, generating...");
+    }
   } catch (err) {
     console.warn("[TTS] S3 read error:", err);
   }

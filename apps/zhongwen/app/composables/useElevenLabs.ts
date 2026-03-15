@@ -4,16 +4,18 @@ let currentAudio: HTMLAudioElement | null = null;
 const ttsCache = new Map<string, Blob>();
 
 /** Use in components: const hasTts = useHasElevenLabs() */
-export function useHasElevenLabs(): boolean {
+export function useHasElevenLabs() {
   return !!useRuntimeConfig().public.hasElevenLabs;
 }
 
-function playBlob(blob: Blob): Promise<void> {
+function playBlob(blob: Blob) {
   const objectUrl = URL.createObjectURL(blob);
   currentAudio = new Audio(objectUrl);
 
-  return new Promise((resolve, reject) => {
-    if (!currentAudio) return;
+  return new Promise<void>((resolve, reject) => {
+    if (!currentAudio) {
+      return;
+    }
     currentAudio.addEventListener("ended", () => {
       URL.revokeObjectURL(objectUrl);
       currentAudio = null;
@@ -28,9 +30,11 @@ function playBlob(blob: Blob): Promise<void> {
   });
 }
 
-export async function speakWithElevenLabs(text: string, slug?: string): Promise<void> {
+export async function speakWithElevenLabs(text: string, slug?: string) {
   const key = slug ? `${slug}:${text.trim()}` : text.trim();
-  if (!text.trim()) return;
+  if (!text.trim()) {
+    return;
+  }
 
   if (currentAudio) {
     currentAudio.pause();
@@ -42,7 +46,7 @@ export async function speakWithElevenLabs(text: string, slug?: string): Promise<
   if (cachedBlob) {
     ttsCache.delete(key);
     ttsCache.set(key, cachedBlob);
-    return playBlob(cachedBlob);
+    return await playBlob(cachedBlob);
   }
 
   const blob = await $fetch<Blob>("/api/tts", {
@@ -53,9 +57,11 @@ export async function speakWithElevenLabs(text: string, slug?: string): Promise<
 
   if (ttsCache.size >= TTS_CACHE_MAX) {
     const oldestKey = ttsCache.keys().next().value;
-    if (oldestKey !== undefined) ttsCache.delete(oldestKey);
+    if (oldestKey !== undefined) {
+      ttsCache.delete(oldestKey);
+    }
   }
   ttsCache.set(key, blob);
 
-  return playBlob(blob);
+  return await playBlob(blob);
 }

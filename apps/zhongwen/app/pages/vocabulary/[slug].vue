@@ -37,7 +37,9 @@ function closeStrokeModal() {
 }
 
 async function handleSpeak(word: Word, index: number) {
-  if (!hasElevenLabs) return;
+  if (!hasElevenLabs) {
+    return;
+  }
   speakingIndex.value = index;
   try {
     await speakWithElevenLabs(word.hanzi);

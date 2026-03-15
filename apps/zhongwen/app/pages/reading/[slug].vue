@@ -27,7 +27,9 @@ const textData = computed<TextData | null>(() => {
 });
 
 const fullText = computed(() => {
-  if (!textData.value) return "";
+  if (!textData.value) {
+    return "";
+  }
   return textData.value.text.words.map((w) => w.hanzi).join("");
 });
 
@@ -42,7 +44,9 @@ function setTooltipRef(el: HTMLElement | null, index: number) {
 
 function handleMouseEnter(index: number) {
   const el = tooltipRefs.value[index];
-  if (!el) return;
+  if (!el) {
+    return;
+  }
 
   el.style.transform = "translateX(-50%)";
 
@@ -63,17 +67,23 @@ function handleMouseEnter(index: number) {
 
 function handleMouseLeave(index: number) {
   const el = tooltipRefs.value[index];
-  if (!el) return;
+  if (!el) {
+    return;
+  }
   el.style.transform = "translateX(-50%)";
 }
 
 async function handleWordClick(word: Word, index: number) {
-  if (word.type === "punct") return;
+  if (word.type === "punct") {
+    return;
+  }
   if (wordMode.value === "stroke") {
     activeTooltipIndex.value = activeTooltipIndex.value === index ? null : index;
     return;
   }
-  if (!hasElevenLabs) return;
+  if (!hasElevenLabs) {
+    return;
+  }
   try {
     await speakWithElevenLabs(word.hanzi);
   } catch {

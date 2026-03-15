@@ -6,5 +6,8 @@ export default defineConfig({
       typeAware: true,
       typeCheck: true,
     },
+    rules: {
+      curly: "error",
+    },
   },
 });

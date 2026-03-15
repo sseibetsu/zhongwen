@@ -1,6 +1,6 @@
 import type { TextData } from "~/utils/types";
 
-export function useTextModules(): Record<string, TextData> {
+export function useTextModules() {
   return import.meta.glob("../assets/texts/*.json", {
     eager: true,
     import: "default",

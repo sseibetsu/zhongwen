@@ -61,7 +61,9 @@ const dictionaries = computed(() => {
 });
 
 const allWords = computed<Word[]>(() => {
-  if (!dictId.value) return [];
+  if (!dictId.value) {
+    return [];
+  }
   const entry = Object.entries(modules).find(([path]) => path.endsWith(`${dictId.value}.json`));
   return entry?.[1] ?? [];
 });
@@ -99,7 +101,9 @@ function initQueue() {
 watch(
   () => dictId.value,
   (id) => {
-    if (id) initQueue();
+    if (id) {
+      initQueue();
+    }
   },
   { immediate: true },
 );
@@ -122,7 +126,9 @@ function getBestMime(): { mimeType: string; ext: string } {
     { mimeType: "audio/ogg;codecs=opus", ext: "ogg" },
   ];
   for (const c of candidates) {
-    if (MediaRecorder.isTypeSupported(c.mimeType)) return c;
+    if (MediaRecorder.isTypeSupported(c.mimeType)) {
+      return c;
+    }
   }
   return { mimeType: "", ext: "webm" };
 }
@@ -133,7 +139,9 @@ let audioChunks: Blob[] = [];
 let recordingExt = "webm";
 
 async function startRecording() {
-  if (isRecording.value || isTranscribing.value || !currentWord.value) return;
+  if (isRecording.value || isTranscribing.value || !currentWord.value) {
+    return;
+  }
   apiError.value = null;
   let stream: MediaStream;
   try {
@@ -147,7 +155,9 @@ async function startRecording() {
   audioChunks = [];
   mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
   mediaRecorder.ondataavailable = (e) => {
-    if (e.data.size > 0) audioChunks.push(e.data);
+    if (e.data.size > 0) {
+      audioChunks.push(e.data);
+    }
   };
   mediaRecorder.onstop = async () => {
     stream.getTracks().forEach((t) => t.stop());
@@ -200,16 +210,23 @@ async function startRecording() {
 }
 
 function stopRecording() {
-  if (mediaRecorder && isRecording.value) mediaRecorder.stop();
+  if (mediaRecorder && isRecording.value) {
+    mediaRecorder.stop();
+  }
 }
 
 function toggleRecording() {
-  if (isRecording.value) stopRecording();
-  else startRecording();
+  if (isRecording.value) {
+    stopRecording();
+  } else {
+    startRecording();
+  }
 }
 
 async function speak() {
-  if (!currentWord.value || !hasElevenLabs || isSpeaking.value) return;
+  if (!currentWord.value || !hasElevenLabs || isSpeaking.value) {
+    return;
+  }
   isSpeaking.value = true;
   try {
     await speakWithElevenLabs(currentWord.value.hanzi);

@@ -51,7 +51,9 @@ const filteredItems = computed(() => {
 const pageSize = ref(8);
 
 function updatePageSize() {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined") {
+    return;
+  }
   if (window.matchMedia("(min-width: 1024px)").matches) {
     pageSize.value = 12;
   } else if (window.matchMedia("(min-width: 768px)").matches) {
@@ -110,12 +112,19 @@ watch(
   [() => route.query.page, totalPages],
   () => {
     const parsed = Number(route.query.page);
-    if (!Number.isFinite(parsed) || parsed < 1) return;
+    if (!Number.isFinite(parsed) || parsed < 1) {
+      return;
+    }
     const clamped = Math.min(Math.max(1, Math.floor(parsed)), totalPages.value);
-    if (clamped === parsed) return;
+    if (clamped === parsed) {
+      return;
+    }
     const q = { ...route.query };
-    if (clamped <= 1) delete q.page;
-    else q.page = String(clamped);
+    if (clamped <= 1) {
+      delete q.page;
+    } else {
+      q.page = String(clamped);
+    }
     router.replace({ path: route.path, query: q });
   },
   { immediate: true },

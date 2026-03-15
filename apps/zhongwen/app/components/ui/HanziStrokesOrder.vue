@@ -9,7 +9,9 @@ const props = defineProps<{
 
 const src = computed(() => {
   const char = props.hanzi.trim();
-  if (!char) return "";
+  if (!char) {
+    return "";
+  }
   return `https://hanzipi.com/pic/gif/${encodeURIComponent(char)}.gif`;
 });
 </script>

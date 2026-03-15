@@ -23,7 +23,9 @@ const emit = defineEmits<{
 const open = ref(false);
 
 const selectedLabels = computed(() => {
-  if (!props.modelValue.length) return props.placeholder;
+  if (!props.modelValue.length) {
+    return props.placeholder;
+  }
   const labels = props.options
     .filter((opt) => props.modelValue.includes(opt.value))
     .map((opt) => opt.label);

@@ -29,8 +29,12 @@ const dictionaries = computed(() => {
 
 function handleSearch() {
   const value = searchQuery.value.trim();
-  if (!value) return;
-  if (!/^[\u4e00-\u9fff\u3400-\u4dbf]+$/.test(value)) return;
+  if (!value) {
+    return;
+  }
+  if (!/^[\u4e00-\u9fff\u3400-\u4dbf]+$/.test(value)) {
+    return;
+  }
 
   if (value === "我操你妈") {
     if (typeof window !== "undefined") {

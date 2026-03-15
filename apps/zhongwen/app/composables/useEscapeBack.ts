@@ -4,13 +4,17 @@ export function useEscapeBack() {
   const route = useRoute();
   const router = useRouter();
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key !== "Escape") return;
+  async function handleKeydown(e: KeyboardEvent) {
+    if (e.key !== "Escape") {
+      return;
+    }
     const path = route.path;
-    if (path === "/" || path === "") return;
+    if (path === "/" || path === "") {
+      return;
+    }
 
     if (path.startsWith("/vocabulary/search/")) {
-      void router.push("/vocabulary");
+      await router.push("/vocabulary");
       return;
     }
 
@@ -18,10 +22,12 @@ export function useEscapeBack() {
       .replace(/^\/|\/$/g, "")
       .split("/")
       .filter(Boolean);
-    if (segments.length === 0) return;
+    if (segments.length === 0) {
+      return;
+    }
     segments.pop();
     const parentPath = segments.length === 0 ? "/" : `/${segments.join("/")}`;
-    void router.push(parentPath);
+    await router.push(parentPath);
   }
 
   onMounted(() => window.addEventListener("keydown", handleKeydown));

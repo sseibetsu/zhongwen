@@ -2,7 +2,7 @@ const TRANSLATE_URL = "https://translation.googleapis.com/language/translate/v2"
 
 export function createGoogleTranslateClient(apiKey: string) {
   return {
-    async translate(text: string, source: string, target: string): Promise<string> {
+    async translate(text: string, source: string, target: string) {
       const params = new URLSearchParams({ q: text, source, target, key: apiKey });
       const res = await fetch(`${TRANSLATE_URL}?${params.toString()}`, { method: "POST" });
 

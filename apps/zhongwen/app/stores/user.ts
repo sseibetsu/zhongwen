@@ -6,28 +6,32 @@ import type { Theme } from "~/utils/types";
 const THEME_KEY = "zhongwen-theme";
 const READ_TEXTS_KEY = "zhongwen-read-texts";
 
-function getStoredTheme(): Theme {
+function getStoredTheme() {
   try {
     const v = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (v === "light" || v === "dark") return v;
+    if (v === "light" || v === "dark") {
+      return v;
+    }
   } catch {
     /* ignore */
   }
   return "dark";
 }
 
-function getStoredReadTextIds(): Set<string> {
+function getStoredReadTextIds() {
   try {
     const raw = localStorage.getItem(READ_TEXTS_KEY);
-    if (!raw) return new Set();
+    if (!raw) {
+      return new Set<string>();
+    }
     const arr = JSON.parse(raw) as unknown;
     if (Array.isArray(arr) && arr.every((x) => typeof x === "string")) {
-      return new Set(arr);
+      return new Set<string>(arr);
     }
   } catch {
     /* ignore */
   }
-  return new Set();
+  return new Set<string>();
 }
 
 function saveReadTextIds(ids: Set<string>) {
@@ -55,7 +59,7 @@ export const useUserStore = defineStore("user", () => {
     setTheme(theme.value === "dark" ? "light" : "dark");
   }
 
-  function isRead(textId: string): boolean {
+  function isRead(textId: string) {
     return readTextIds.value.has(textId);
   }
 

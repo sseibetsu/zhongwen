@@ -23,8 +23,10 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "中文",
-      meta: [{ name: "viewport", content: "width=device-width, initial-scale=1.0" }],
-      link: [{ rel: "icon", href: "/favicon.ico" }],
+      meta: [
+        { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+      ],
+      link: [{ rel: "icon", href: "/favicon.png" }],
     },
   },
   css: ["~/assets/css/main.css"],

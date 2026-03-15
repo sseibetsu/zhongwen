@@ -128,7 +128,7 @@ watch(
     googleError.value = false;
     googleTranslation.value = null;
     try {
-      const { translation } = await $fetch<{ translation: string }>("/api/translate", {
+      const { translation } = await $fetch("/api/translate", {
         method: "POST",
         body: { text: key },
       });

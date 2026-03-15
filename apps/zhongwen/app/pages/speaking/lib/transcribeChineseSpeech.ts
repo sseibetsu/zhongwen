@@ -3,7 +3,7 @@ export async function transcribeChineseSpeech(blob: Blob, ext: string): Promise<
   const formData = new FormData();
   formData.append("file", file);
 
-  const { text } = await $fetch<{ text: string }>("/api/transcribe", {
+  const { text } = await $fetch("/api/transcribe", {
     method: "POST",
     body: formData,
   });

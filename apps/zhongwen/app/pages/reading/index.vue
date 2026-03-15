@@ -4,6 +4,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { Card } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Link } from "~/components/ui/link";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "~/components/ui/select";
 import { useTextModules } from "~/composables/useTexts";
 import { getCardStyle } from "~/lib/cardStyles";
 import type { ReadingItem as Item, TextMeta } from "~/lib/types";
@@ -35,6 +36,14 @@ const levelOptions = ["HSK1", "HSK2", "HSK3", "HSK4", "HSK5", "HSK6"] as const;
 
 const selectedLevels = ref<string[]>([]);
 const searchQuery = ref("");
+
+const selectedLevelsLabel = computed(() => {
+  if (!selectedLevels.value.length) {
+    return "HSK level";
+  }
+
+  return levelOptions.filter((level) => selectedLevels.value.includes(level)).join(", ");
+});
 
 const filteredItems = computed(() => {
   const normalizedQuery = searchQuery.value.trim().toLowerCase();
@@ -150,12 +159,21 @@ watch(
             placeholder="Search text name"
             class="w-full sm:w-56"
           />
-          <MultiSelect
-            v-model="selectedLevels"
-            :options="levelOptions.map((l) => ({ label: l, value: l }))"
-            class="w-full sm:w-40"
-            placeholder="HSK level"
-          />
+          <Select v-model="selectedLevels" multiple>
+            <SelectTrigger class="w-full sm:w-40">
+              <span
+                class="truncate text-left"
+                :class="!selectedLevels.length && 'text-muted-foreground'"
+              >
+                {{ selectedLevelsLabel }}
+              </span>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem v-for="level in levelOptions" :key="level" :value="level">
+                {{ level }}
+              </SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-4">

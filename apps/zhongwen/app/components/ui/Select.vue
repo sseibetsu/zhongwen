@@ -18,7 +18,7 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: "update:modelValue", value: string[]): void;
+  "update:modelValue": [value: string[]];
 }>();
 
 const open = ref(false);

@@ -59,10 +59,12 @@ export default defineEventHandler(async (event) => {
   const audioBuffer = await elevenlabs.textToSpeech(VOICE_ID, text, MODEL_ID, OUTPUT_FORMAT);
 
   if (s3) {
-    void s3
-      .put(key, audioBuffer, "audio/mpeg")
-      .then(() => console.log("[TTS] saved to S3:", key))
-      .catch((err) => console.warn("[TTS] S3 write error:", err));
+    try {
+      await s3.put(key, audioBuffer, "audio/mpeg");
+      console.log("[TTS] saved to S3:", key);
+    } catch (err) {
+      console.warn("[TTS] S3 write error:", err);
+    }
   }
 
   setHeader(event, "Content-Type", "audio/mpeg");

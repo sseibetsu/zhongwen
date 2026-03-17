@@ -1,7 +1,9 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import google.generativeai as genai
+from openai import OpenAI
+import tempfile
+import json
+import os
 
 app = FastAPI()
 
@@ -12,46 +14,62 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-genai.configure(api_key="***")
+client = OpenAI(api_key="***")
 
-# system prompt for api model
 SYSTEM_INSTRUCTION = """
-    Ты - строгий профессор из Northwestern Polytechnical University (NWPU). 
-    Ты проводишь онлайн-собеседование со студентом-иностранцем на получение стипендии.
-    Твоя задача: поддерживать диалог на простом китайском языке (уровень HSK 2-3). 
-    Задавай вопросы о его проектах, IT и мотивации учиться в Китае.
-    Если студент отвечает с ошибками (опирайся на присланный текст), мягко исправляй его. 
-    Отвечай коротко: максимум 2 предложения за раз. Используй только китайские иероглифы.
-    """
-
-model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
-    system_instruction=SYSTEM_INSTRUCTION
-)
-
-
-class Message(BaseModel):
-    role: str
-    parts: str
-
-
-class ChatRequest(BaseModel):
-    history: list[Message]
-    message: str
+Ты - строгий профессор из Northwestern Polytechnical University (NWPU). 
+Ты проводишь онлайн-собеседование со студентом-иностранцем на получение стипендии.
+Твоя задача: поддерживать диалог на простом китайском языке (уровень HSK 2-3). 
+Если студент отвечает с ошибками (опирайся на присланный текст), мягко исправляй его. 
+Отвечай коротко: максимум 2 предложения за раз. Используй только китайские иероглифы.
+"""
 
 
 @app.post("/chat")
-async def chat_endpoint(req: ChatRequest):
+async def chat_endpoint(
+    audio: UploadFile = File(...),
+    history: str = Form("[]")
+):
+    history_list = json.loads(history)
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
+        tmp.write(await audio.read())
+        tmp_path = tmp.name
+
     try:
-        formatted_history = [
-            {"role": m.role, "parts": [m.parts]} for m in req.history
-        ]
+        # Whisper API
+        with open(tmp_path, "rb") as audio_file:
+            transcription = client.audio.transcriptions.create(
+                model="whisper-1",
+                file=audio_file,
+                language="zh"
+            )
 
-        chat = model.start_chat(history=formatted_history)
+        user_text = transcription.text.strip()
 
-        response = chat.send_message(req.message)
+        if not user_text:
+            return {"reply": "Простите, я вас не расслышал. Повторите, пожалуйста.", "user_text": ""}
 
-        return {"reply": response.text}
+        # 2. contexting for GPT-4o-mini
+        messages = [{"role": "system", "content": SYSTEM_INSTRUCTION}]
+
+        for m in history_list:
+            role = "assistant" if m["role"] == "model" else "user"
+            messages.append({"role": role, "content": m["parts"]})
+
+        messages.append({"role": "user", "content": user_text})
+
+        # reaching LLM
+        completion = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages
+        )
+
+        reply = completion.choices[0].message.content
+
+        return {"reply": reply, "user_text": user_text}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        os.remove(tmp_path)

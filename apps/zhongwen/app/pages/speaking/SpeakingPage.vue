@@ -1,5 +1,3 @@
-// 100% vibecoded, 0 understood
-
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
 import { computed, ref, watch } from "vue";
@@ -26,40 +24,80 @@ const isDictList = computed(() => route.path === "/speaking/words" && !dictId.va
 const isPractice = computed(() => Boolean(dictId.value));
 const isSentences = computed(() => route.path === "/speaking/sentences");
 
-// ── Web Speech API (замена ElevenLabs и серверной транскрибации) ─────────────
-const { listen, speak: webSpeak, isListening, isSpeaking } = useWebSpeech();
+// ── Web Speech API (Для озвучки ИИ и бесплатного распознавания слов) ─────────────
+const { listen: webListen, speak: webSpeak, isListening: isWebListening, isSpeaking } = useWebSpeech();
 
-// ── AI Roleplay State (Для режима Sentences) ─────────────────────────────────
+// ── AI Roleplay State (Для режима Sentences - работает через Whisper) ─────────────────
 const chatHistory = ref<{ role: string, parts: string }[]>([]);
 const isChatLoading = ref(false);
+const isRecording = ref(false);
+const apiError = ref<string | null>(null);
 
-async function startConversation() {
-  if (isListening.value || isChatLoading.value || isSpeaking.value) return;
-  
+let mediaRecorder: MediaRecorder | null = null;
+let audioChunks: Blob[] = [];
+
+async function toggleChatRecording() {
+  if (isChatLoading.value || isSpeaking.value) return;
+
+  // Если уже пишем — останавливаем
+  if (isRecording.value && mediaRecorder) {
+    mediaRecorder.stop();
+    return;
+  }
+
+  // Если не пишем — начинаем запись
+  apiError.value = null;
   try {
-    // 1. Слушаем пользователя
-    const userText = await listen();
-    if (!userText.trim()) return;
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus") 
+      ? "audio/webm;codecs=opus" 
+      : "audio/webm";
 
-    chatHistory.value.push({ role: "user", parts: userText });
-    isChatLoading.value = true;
-    
-    // 2. Отправляем на наш Python-сервер
+    mediaRecorder = new MediaRecorder(stream, { mimeType });
+    audioChunks = [];
+
+    mediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) audioChunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = async () => {
+      stream.getTracks().forEach((t) => t.stop());
+      isRecording.value = false;
+      isChatLoading.value = true;
+      
+      const audioBlob = new Blob(audioChunks, { type: mimeType || "audio/webm" });
+      await sendAudioToServer(audioBlob);
+    };
+
+    mediaRecorder.start();
+    isRecording.value = true;
+
+  } catch (err) {
+    apiError.value = "Доступ к микрофону запрещен";
+    console.error(err);
+  }
+}
+
+async function sendAudioToServer(blob: Blob) {
+  try {
+    const formData = new FormData();
+    formData.append("audio", blob, "voice.webm");
+    formData.append("history", JSON.stringify(chatHistory.value));
+
     const response = await $fetch("http://localhost:8000/chat", {
       method: "POST",
-      body: {
-        history: chatHistory.value.slice(0, -1), // Отправляем историю без последней фразы
-        message: userText
-      }
+      body: formData,
     });
 
-    // 3. Сохраняем и озвучиваем ответ
-    chatHistory.value.push({ role: "model", parts: response.reply });
-    await webSpeak(response.reply);
+    if (response.user_text) {
+      chatHistory.value.push({ role: "user", parts: response.user_text });
+      chatHistory.value.push({ role: "model", parts: response.reply });
+      await webSpeak(response.reply);
+    }
 
   } catch (error) {
     console.error("Ошибка диалога:", error);
-    apiError.value = typeof error === 'string' ? error : "Ошибка соединения с сервером";
+    apiError.value = "Ошибка соединения с сервером ИИ";
   } finally {
     isChatLoading.value = false;
   }
@@ -74,7 +112,7 @@ const modes = [
     ...getCardStyle(0, "main"),
   },
   {
-    title: "AI Roleplay", // Переименовали Sentences
+    title: "AI Roleplay",
     description: "Practise dialogue with AI Professor",
     to: "/speaking/sentences",
     ...getCardStyle(1, "main"),
@@ -89,12 +127,7 @@ const dictionaries = computed(() => {
     const filename = path.split("/").pop() || "";
     const id = filename.replace(".json", "");
     const { icon, tone } = getCardStyle(index, "vocabulary");
-    return {
-      id,
-      title: formatDictName(id),
-      icon,
-      tone,
-    };
+    return { id, title: formatDictName(id), icon, tone };
   });
 });
 
@@ -113,7 +146,6 @@ const done = ref(false);
 const revealed = ref(false);
 const lastResult = ref<"correct" | "incorrect" | null>(null);
 const transcribedText = ref("");
-const apiError = ref<string | null>(null);
 
 const currentWord = computed(() => queue.value[currentIndex.value] ?? null);
 const progress = computed(() => queue.value.length ? (currentIndex.value / queue.value.length) * 100 : 0);
@@ -133,7 +165,7 @@ watch(() => dictId.value, (id) => { if (id) initQueue(); }, { immediate: true })
 
 // ── helpers ─────────────────────────────────────────────────────────────────
 function normalize(text: string): string {
-  return text.replace(/[\s.,!?。，！？]/g, "").toLowerCase(); // Добавил китайскую пунктуацию
+  return text.replace(/[\s.,!?。，！？]/g, "").toLowerCase();
 }
 
 function isMatch(transcription: string, word: Word): boolean {
@@ -143,11 +175,11 @@ function isMatch(transcription: string, word: Word): boolean {
 
 // ── new recording (Words mode) ───────────────────────────────────────────────
 async function checkWordPronunciation() {
-  if (isListening.value || !currentWord.value || isSpeaking.value) return;
+  if (isWebListening.value || !currentWord.value || isSpeaking.value) return;
   apiError.value = null;
   
   try {
-    const text = await listen();
+    const text = await webListen();
     transcribedText.value = text;
     
     const correct = isMatch(text, currentWord.value);
@@ -156,7 +188,6 @@ async function checkWordPronunciation() {
       lastResult.value = "correct";
     } else {
       lastResult.value = "incorrect";
-      // Если ошибка - ИИ озвучивает правильный вариант
       await webSpeak(currentWord.value.hanzi);
     }
     
@@ -225,7 +256,6 @@ function reveal() { revealed.value = true; }
       </div>
       
       <div class="flex-1 rounded-2xl border border-border bg-card p-4 min-h-[400px] flex flex-col justify-between">
-        
         <div class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
           <div v-if="chatHistory.length === 0" class="text-center text-muted-foreground mt-10">
             Нажми микрофон и поздоровайся с профессором.
@@ -253,21 +283,21 @@ function reveal() { revealed.value = true; }
               type="button"
               class="flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-200 disabled:opacity-40"
               :class="{
-                'scale-110 border-red-500 bg-red-500/20 text-red-400': isListening,
-                'border-accent bg-accent/10 text-accent hover:bg-accent/20': !isListening,
+                'scale-110 border-red-500 bg-red-500/20 text-red-400': isRecording,
+                'border-accent bg-accent/10 text-accent hover:bg-accent/20': !isRecording,
               }"
               :disabled="isChatLoading || isSpeaking"
-              @click="startConversation"
+              @click="toggleChatRecording"
             >
-              <Icon v-if="isListening" icon="lucide:square" class="h-6 w-6" />
+              <Icon v-if="isRecording" icon="lucide:square" class="h-6 w-6" />
               <Icon v-else icon="lucide:mic" class="h-7 w-7" />
             </button>
         </div>
         <p class="text-center text-xs text-muted-foreground mt-2">
-          <span v-if="isListening">Говорите...</span>
+          <span v-if="isRecording">Запись... Нажми ■ чтобы отправить</span>
           <span v-else-if="isChatLoading">Профессор думает...</span>
           <span v-else-if="isSpeaking">Профессор говорит...</span>
-          <span v-else>Нажмите для ответа</span>
+          <span v-else>Нажми 🎤 чтобы ответить</span>
         </p>
       </div>
     </div>
@@ -319,15 +349,15 @@ function reveal() { revealed.value = true; }
               <Icon v-else icon="lucide:volume-2" class="h-5 w-5" />
             </button>
             <button type="button" class="flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-200 disabled:opacity-40"
-              :class="{'scale-110 border-red-500 bg-red-500/20 text-red-400': isListening, 'border-accent bg-accent/10 text-accent hover:bg-accent/20': !isListening, 'border-muted bg-muted text-muted-foreground': isSpeaking}"
+              :class="{'scale-110 border-red-500 bg-red-500/20 text-red-400': isWebListening, 'border-accent bg-accent/10 text-accent hover:bg-accent/20': !isWebListening, 'border-muted bg-muted text-muted-foreground': isSpeaking}"
               :disabled="isSpeaking" aria-label="Start recording" @click="checkWordPronunciation">
-              <Icon v-if="isListening" icon="lucide:square" class="h-6 w-6" />
+              <Icon v-if="isWebListening" icon="lucide:square" class="h-6 w-6" />
               <Icon v-else icon="lucide:mic" class="h-7 w-7" />
             </button>
           </div>
           
           <p class="-mt-1 text-xs text-muted-foreground">
-            <template v-if="isListening">Listening...</template>
+            <template v-if="isWebListening">Listening...</template>
             <template v-else-if="lastResult">Moving to next word…</template>
             <template v-else>Tap 🎤 and say the word</template>
           </p>

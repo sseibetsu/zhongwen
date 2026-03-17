@@ -1,3 +1,5 @@
+// 100% vibecoded, 0 understood
+
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
 import { computed, ref, watch } from "vue";

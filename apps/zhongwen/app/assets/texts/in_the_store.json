@@ -1,0 +1,84 @@
+{
+  "title": "In the Store",
+  "description": "A text about people in a store.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      {
+        "hanzi": "商店",
+        "pinyin": "shāng diàn",
+        "translation": "store",
+        "hsk": 1
+      },
+      { "hanzi": "里", "pinyin": "lǐ", "translation": "inside", "hsk": 1 },
+      { "hanzi": "有", "pinyin": "yǒu", "translation": "have", "hsk": 1 },
+      { "hanzi": "很多", "pinyin": "hěn duō", "translation": "many", "hsk": 1 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他们", "pinyin": "tā men", "translation": "they", "hsk": 1 },
+      { "hanzi": "看", "pinyin": "kàn", "translation": "look", "hsk": 1 },
+      {
+        "hanzi": "东西",
+        "pinyin": "dōng xi",
+        "translation": "things",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "问", "pinyin": "wèn", "translation": "ask", "hsk": 1 },
+      {
+        "hanzi": "问题",
+        "pinyin": "wèn tí",
+        "translation": "question",
+        "hsk": 2
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "有的", "pinyin": "yǒu de", "translation": "some", "hsk": 2 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      { "hanzi": "买", "pinyin": "mǎi", "translation": "buy", "hsk": 1 },
+      { "hanzi": "水", "pinyin": "shuǐ", "translation": "water", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "有的", "pinyin": "yǒu de", "translation": "some", "hsk": 2 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      { "hanzi": "买", "pinyin": "mǎi", "translation": "buy", "hsk": 1 },
+      {
+        "hanzi": "水果",
+        "pinyin": "shuǐ guǒ",
+        "translation": "fruit",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

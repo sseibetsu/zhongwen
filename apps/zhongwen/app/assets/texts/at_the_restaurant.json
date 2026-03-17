@@ -1,0 +1,111 @@
+{
+  "title": "At the Restaurant",
+  "description": "A dialogue about ordering food in a restaurant.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      {
+        "hanzi": "服务员",
+        "pinyin": "fú wù yuán",
+        "translation": "waiter",
+        "hsk": 1
+      },
+      {
+        "hanzi": "：",
+        "pinyin": "",
+        "translation": "colon",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "你", "pinyin": "nǐ", "translation": "you", "hsk": 1 },
+      { "hanzi": "要", "pinyin": "yào", "translation": "want", "hsk": 1 },
+      { "hanzi": "吃", "pinyin": "chī", "translation": "eat", "hsk": 1 },
+      { "hanzi": "什么", "pinyin": "shén me", "translation": "what", "hsk": 1 },
+      {
+        "hanzi": "？",
+        "pinyin": "",
+        "translation": "question mark",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "要", "pinyin": "yào", "translation": "want", "hsk": 1 },
+      { "hanzi": "米饭", "pinyin": "mǐ fàn", "translation": "rice", "hsk": 1 },
+      { "hanzi": "和", "pinyin": "hé", "translation": "and", "hsk": 1 },
+      { "hanzi": "水", "pinyin": "shuǐ", "translation": "water", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "不要",
+        "pinyin": "bú yào",
+        "translation": "do not want",
+        "hsk": 1
+      },
+      { "hanzi": "肉", "pinyin": "ròu", "translation": "meat", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "服务员",
+        "pinyin": "fú wù yuán",
+        "translation": "waiter",
+        "hsk": 1
+      },
+      {
+        "hanzi": "：",
+        "pinyin": "",
+        "translation": "colon",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "好", "pinyin": "hǎo", "translation": "ok", "hsk": 1 },
+      { "hanzi": "的", "pinyin": "de", "translation": "particle", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "还", "pinyin": "hái", "translation": "also", "hsk": 1 },
+      { "hanzi": "要", "pinyin": "yào", "translation": "want", "hsk": 1 },
+      { "hanzi": "什么", "pinyin": "shén me", "translation": "what", "hsk": 1 },
+      {
+        "hanzi": "？",
+        "pinyin": "",
+        "translation": "question mark",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "再", "pinyin": "zài", "translation": "again", "hsk": 1 },
+      { "hanzi": "要", "pinyin": "yào", "translation": "want", "hsk": 1 },
+      { "hanzi": "一个", "pinyin": "yí gè", "translation": "one", "hsk": 1 },
+      {
+        "hanzi": "苹果",
+        "pinyin": "píng guǒ",
+        "translation": "apple",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

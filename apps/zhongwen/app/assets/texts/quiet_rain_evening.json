@@ -1,0 +1,73 @@
+{
+  "title": "Quiet Rainy Evening",
+  "description": "People stay inside while rain falls outside and the city becomes calm and quiet.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      {
+        "hanzi": "晚上",
+        "pinyin": "wǎn shang",
+        "translation": "evening",
+        "hsk": 1
+      },
+      { "hanzi": "下雨", "pinyin": "xià yǔ", "translation": "rain", "hsk": 1 },
+      { "hanzi": "了", "pinyin": "le", "translation": "particle", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "外面",
+        "pinyin": "wài miàn",
+        "translation": "outside",
+        "hsk": 1
+      },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      {
+        "hanzi": "安静",
+        "pinyin": "ān jìng",
+        "translation": "quiet",
+        "hsk": 2
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "人们",
+        "pinyin": "rén men",
+        "translation": "people",
+        "hsk": 2
+      },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      { "hanzi": "家", "pinyin": "jiā", "translation": "home", "hsk": 1 },
+      { "hanzi": "看", "pinyin": "kàn", "translation": "watch", "hsk": 1 },
+      { "hanzi": "电视", "pinyin": "diàn shì", "translation": "TV", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "或者", "pinyin": "huò zhě", "translation": "or", "hsk": 2 },
+      { "hanzi": "看书", "pinyin": "kàn shū", "translation": "read", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

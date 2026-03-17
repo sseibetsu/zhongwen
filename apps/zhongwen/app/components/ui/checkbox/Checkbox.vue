@@ -14,21 +14,15 @@ const props = defineProps<
     modelValue?: boolean;
   }
 >();
-const emits = defineEmits<
-  CheckboxRootEmits & {
-    "update:modelValue": [value: boolean];
-  }
->();
+const emits = defineEmits<CheckboxRootEmits>();
 
 const delegatedProps = reactiveOmit(props, "class", "label", "modelValue");
 
-// Support both v-model (boolean) and v-model:checked (reka-ui)
-const isChecked = computed(() => props.modelValue ?? props.checked ?? false);
+const isChecked = computed(() => props.modelValue ?? false);
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits);
 
 function onCheckedChange(val: boolean | "indeterminate") {
-  emits("update:checked", val);
   emits("update:modelValue", val === true);
 }
 </script>
@@ -42,14 +36,14 @@ function onCheckedChange(val: boolean | "indeterminate") {
       v-slot="slotProps"
       data-slot="checkbox"
       v-bind="forwarded"
-      :checked="isChecked"
+      :model-value="isChecked"
       :class="
         cn(
           'peer size-4 shrink-0 rounded-[4px] border border-input shadow-xs transition-shadow outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-accent data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground',
           props.class,
         )
       "
-      @update:checked="onCheckedChange"
+      @update:model-value="onCheckedChange"
     >
       <CheckboxIndicator
         data-slot="checkbox-indicator"
@@ -67,14 +61,14 @@ function onCheckedChange(val: boolean | "indeterminate") {
     v-slot="slotProps"
     data-slot="checkbox"
     v-bind="forwarded"
-    :checked="isChecked"
+    :model-value="isChecked"
     :class="
       cn(
         'peer size-4 shrink-0 rounded-[4px] border border-input shadow-xs transition-shadow outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-accent data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground',
         props.class,
       )
     "
-    @update:checked="onCheckedChange"
+    @update:model-value="onCheckedChange"
   >
     <CheckboxIndicator
       data-slot="checkbox-indicator"

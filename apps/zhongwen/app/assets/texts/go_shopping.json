@@ -1,0 +1,73 @@
+{
+  "title": "Go Shopping",
+  "description": "A text about shopping.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      {
+        "hanzi": "今天",
+        "pinyin": "jīn tiān",
+        "translation": "today",
+        "hsk": 1
+      },
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "去", "pinyin": "qù", "translation": "go", "hsk": 1 },
+      {
+        "hanzi": "商店",
+        "pinyin": "shāng diàn",
+        "translation": "shop",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "买", "pinyin": "mǎi", "translation": "buy", "hsk": 1 },
+      { "hanzi": "了", "pinyin": "le", "translation": "particle", "hsk": 1 },
+      { "hanzi": "很多", "pinyin": "hěn duō", "translation": "many", "hsk": 1 },
+      {
+        "hanzi": "东西",
+        "pinyin": "dōng xi",
+        "translation": "things",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "有", "pinyin": "yǒu", "translation": "have", "hsk": 1 },
+      { "hanzi": "水", "pinyin": "shuǐ", "translation": "water", "hsk": 1 },
+      {
+        "hanzi": "、",
+        "pinyin": "",
+        "translation": "enumeration comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "米饭", "pinyin": "mǐ fàn", "translation": "rice", "hsk": 1 },
+      { "hanzi": "和", "pinyin": "hé", "translation": "and", "hsk": 1 },
+      {
+        "hanzi": "水果",
+        "pinyin": "shuǐ guǒ",
+        "translation": "fruit",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

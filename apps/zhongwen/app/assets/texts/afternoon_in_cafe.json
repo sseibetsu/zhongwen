@@ -1,0 +1,89 @@
+{
+  "title": "Afternoon in a Cafe",
+  "description": "People relax in a cafe, drink tea or coffee, and spend time quietly.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      {
+        "hanzi": "下午",
+        "pinyin": "xià wǔ",
+        "translation": "afternoon",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "人们",
+        "pinyin": "rén men",
+        "translation": "people",
+        "hsk": 2
+      },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      {
+        "hanzi": "咖啡店",
+        "pinyin": "kā fēi diàn",
+        "translation": "cafe",
+        "hsk": 2
+      },
+      { "hanzi": "坐", "pinyin": "zuò", "translation": "sit", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他们", "pinyin": "tā men", "translation": "they", "hsk": 1 },
+      { "hanzi": "喝", "pinyin": "hē", "translation": "drink", "hsk": 1 },
+      { "hanzi": "茶", "pinyin": "chá", "translation": "tea", "hsk": 1 },
+      { "hanzi": "或者", "pinyin": "huò zhě", "translation": "or", "hsk": 2 },
+      {
+        "hanzi": "咖啡",
+        "pinyin": "kā fēi",
+        "translation": "coffee",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "有的", "pinyin": "yǒu de", "translation": "some", "hsk": 2 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      {
+        "hanzi": "工作",
+        "pinyin": "gōng zuò",
+        "translation": "work",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "有的", "pinyin": "yǒu de", "translation": "some", "hsk": 2 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      { "hanzi": "休息", "pinyin": "xiū xi", "translation": "rest", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

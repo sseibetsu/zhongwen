@@ -1,0 +1,72 @@
+{
+  "title": "My Teacher",
+  "description": "A short text about a teacher.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "的", "pinyin": "de", "translation": "particle", "hsk": 1 },
+      {
+        "hanzi": "老师",
+        "pinyin": "lǎo shī",
+        "translation": "teacher",
+        "hsk": 1
+      },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      { "hanzi": "好", "pinyin": "hǎo", "translation": "good", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "教", "pinyin": "jiāo", "translation": "teach", "hsk": 1 },
+      { "hanzi": "我们", "pinyin": "wǒ men", "translation": "us", "hsk": 1 },
+      {
+        "hanzi": "汉语",
+        "pinyin": "hàn yǔ",
+        "translation": "Chinese",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我们", "pinyin": "wǒ men", "translation": "we", "hsk": 1 },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      {
+        "hanzi": "学校",
+        "pinyin": "xué xiào",
+        "translation": "school",
+        "hsk": 1
+      },
+      { "hanzi": "学习", "pinyin": "xué xí", "translation": "study", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      { "hanzi": "喜欢", "pinyin": "xǐ huan", "translation": "like", "hsk": 1 },
+      { "hanzi": "他", "pinyin": "tā", "translation": "him", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

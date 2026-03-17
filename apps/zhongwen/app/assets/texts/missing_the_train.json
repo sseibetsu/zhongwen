@@ -1,0 +1,105 @@
+{
+  "title": "Missing the Train",
+  "description": "A person arrives late and misses the train, then has to change plans and wait again.",
+  "level": "HSK2",
+  "text": {
+    "words": [
+      {
+        "hanzi": "今天",
+        "pinyin": "jīn tiān",
+        "translation": "today",
+        "hsk": 1
+      },
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "来", "pinyin": "lái", "translation": "come", "hsk": 1 },
+      { "hanzi": "晚", "pinyin": "wǎn", "translation": "late", "hsk": 1 },
+      { "hanzi": "了", "pinyin": "le", "translation": "particle", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "跑", "pinyin": "pǎo", "translation": "run", "hsk": 1 },
+      { "hanzi": "到", "pinyin": "dào", "translation": "arrive", "hsk": 1 },
+      {
+        "hanzi": "车站",
+        "pinyin": "chē zhàn",
+        "translation": "station",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "但是", "pinyin": "dàn shì", "translation": "but", "hsk": 2 },
+      { "hanzi": "车", "pinyin": "chē", "translation": "vehicle", "hsk": 1 },
+      {
+        "hanzi": "已经",
+        "pinyin": "yǐ jīng",
+        "translation": "already",
+        "hsk": 2
+      },
+      { "hanzi": "走", "pinyin": "zǒu", "translation": "leave", "hsk": 1 },
+      { "hanzi": "了", "pinyin": "le", "translation": "particle", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      {
+        "hanzi": "非常",
+        "pinyin": "fēi cháng",
+        "translation": "very",
+        "hsk": 2
+      },
+      {
+        "hanzi": "失望",
+        "pinyin": "shī wàng",
+        "translation": "disappointed",
+        "hsk": 3
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "只好",
+        "pinyin": "zhǐ hǎo",
+        "translation": "have to",
+        "hsk": 3
+      },
+      { "hanzi": "再", "pinyin": "zài", "translation": "again", "hsk": 1 },
+      { "hanzi": "等", "pinyin": "děng", "translation": "wait", "hsk": 1 },
+      { "hanzi": "一个", "pinyin": "yí gè", "translation": "one", "hsk": 1 },
+      {
+        "hanzi": "小时",
+        "pinyin": "xiǎo shí",
+        "translation": "hour",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

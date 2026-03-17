@@ -1,0 +1,132 @@
+{
+  "title": "My Day",
+  "description": "A simple text about a daily routine.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      {
+        "hanzi": "每天",
+        "pinyin": "měi tiān",
+        "translation": "every day",
+        "hsk": 1
+      },
+      {
+        "hanzi": "早上",
+        "pinyin": "zǎo shang",
+        "translation": "morning",
+        "hsk": 1
+      },
+      {
+        "hanzi": "七点",
+        "pinyin": "qī diǎn",
+        "translation": "seven o'clock",
+        "hsk": 1
+      },
+      {
+        "hanzi": "起床",
+        "pinyin": "qǐ chuáng",
+        "translation": "get up",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "吃", "pinyin": "chī", "translation": "eat", "hsk": 1 },
+      {
+        "hanzi": "早饭",
+        "pinyin": "zǎo fàn",
+        "translation": "breakfast",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "喝", "pinyin": "hē", "translation": "drink", "hsk": 1 },
+      { "hanzi": "水", "pinyin": "shuǐ", "translation": "water", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "去", "pinyin": "qù", "translation": "go", "hsk": 1 },
+      {
+        "hanzi": "学校",
+        "pinyin": "xué xiào",
+        "translation": "school",
+        "hsk": 1
+      },
+      { "hanzi": "学习", "pinyin": "xué xí", "translation": "study", "hsk": 1 },
+      {
+        "hanzi": "汉语",
+        "pinyin": "hàn yǔ",
+        "translation": "Chinese",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "晚上",
+        "pinyin": "wǎn shang",
+        "translation": "evening",
+        "hsk": 1
+      },
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      {
+        "hanzi": "回家",
+        "pinyin": "huí jiā",
+        "translation": "go home",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "吃饭",
+        "pinyin": "chī fàn",
+        "translation": "eat meal",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "看", "pinyin": "kàn", "translation": "watch", "hsk": 1 },
+      { "hanzi": "电视", "pinyin": "diàn shì", "translation": "TV", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

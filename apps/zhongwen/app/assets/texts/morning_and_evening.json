@@ -1,0 +1,142 @@
+{
+  "title": "Morning and Evening",
+  "description": "A text about morning and evening activities.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      {
+        "hanzi": "早上",
+        "pinyin": "zǎo shang",
+        "translation": "morning",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "人们",
+        "pinyin": "rén men",
+        "translation": "people",
+        "hsk": 2
+      },
+      { "hanzi": "去", "pinyin": "qù", "translation": "go", "hsk": 1 },
+      {
+        "hanzi": "工作",
+        "pinyin": "gōng zuò",
+        "translation": "work",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "去", "pinyin": "qù", "translation": "go", "hsk": 1 },
+      { "hanzi": "学习", "pinyin": "xué xí", "translation": "study", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "中午",
+        "pinyin": "zhōng wǔ",
+        "translation": "noon",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "大家",
+        "pinyin": "dà jiā",
+        "translation": "everyone",
+        "hsk": 1
+      },
+      { "hanzi": "吃饭", "pinyin": "chī fàn", "translation": "eat", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "喝水",
+        "pinyin": "hē shuǐ",
+        "translation": "drink water",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "晚上",
+        "pinyin": "wǎn shang",
+        "translation": "evening",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "人们",
+        "pinyin": "rén men",
+        "translation": "people",
+        "hsk": 2
+      },
+      {
+        "hanzi": "回家",
+        "pinyin": "huí jiā",
+        "translation": "go home",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "休息", "pinyin": "xiū xi", "translation": "rest", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "看", "pinyin": "kàn", "translation": "watch/read", "hsk": 1 },
+      { "hanzi": "电视", "pinyin": "diàn shì", "translation": "TV", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

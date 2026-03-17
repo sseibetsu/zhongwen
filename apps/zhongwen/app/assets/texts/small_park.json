@@ -1,0 +1,84 @@
+{
+  "title": "Small Park",
+  "description": "A text about a park.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      { "hanzi": "这个", "pinyin": "zhè ge", "translation": "this", "hsk": 1 },
+      {
+        "hanzi": "公园",
+        "pinyin": "gōng yuán",
+        "translation": "park",
+        "hsk": 1
+      },
+      { "hanzi": "不", "pinyin": "bù", "translation": "not", "hsk": 1 },
+      { "hanzi": "大", "pinyin": "dà", "translation": "big", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "但是", "pinyin": "dàn shì", "translation": "but", "hsk": 2 },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      {
+        "hanzi": "漂亮",
+        "pinyin": "piào liang",
+        "translation": "beautiful",
+        "hsk": 2
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "里面",
+        "pinyin": "lǐ miàn",
+        "translation": "inside",
+        "hsk": 1
+      },
+      { "hanzi": "有", "pinyin": "yǒu", "translation": "have", "hsk": 1 },
+      { "hanzi": "很多", "pinyin": "hěn duō", "translation": "many", "hsk": 1 },
+      { "hanzi": "树", "pinyin": "shù", "translation": "trees", "hsk": 1 },
+      { "hanzi": "和", "pinyin": "hé", "translation": "and", "hsk": 1 },
+      { "hanzi": "花", "pinyin": "huā", "translation": "flowers", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "人们",
+        "pinyin": "rén men",
+        "translation": "people",
+        "hsk": 2
+      },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      { "hanzi": "这里", "pinyin": "zhè lǐ", "translation": "here", "hsk": 1 },
+      { "hanzi": "走路", "pinyin": "zǒu lù", "translation": "walk", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "休息", "pinyin": "xiū xi", "translation": "rest", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

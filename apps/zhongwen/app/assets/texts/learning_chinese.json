@@ -1,0 +1,86 @@
+{
+  "title": "Learning Chinese",
+  "description": "A text about learning Chinese.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "学习", "pinyin": "xué xí", "translation": "study", "hsk": 1 },
+      {
+        "hanzi": "汉语",
+        "pinyin": "hàn yǔ",
+        "translation": "Chinese",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "汉语",
+        "pinyin": "hàn yǔ",
+        "translation": "Chinese",
+        "hsk": 1
+      },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      { "hanzi": "难", "pinyin": "nán", "translation": "difficult", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "但是", "pinyin": "dàn shì", "translation": "but", "hsk": 2 },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      {
+        "hanzi": "有意思",
+        "pinyin": "yǒu yì si",
+        "translation": "interesting",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      {
+        "hanzi": "每天",
+        "pinyin": "měi tiān",
+        "translation": "every day",
+        "hsk": 1
+      },
+      { "hanzi": "说", "pinyin": "shuō", "translation": "speak", "hsk": 1 },
+      {
+        "hanzi": "汉语",
+        "pinyin": "hàn yǔ",
+        "translation": "Chinese",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "看", "pinyin": "kàn", "translation": "read/watch", "hsk": 1 },
+      { "hanzi": "书", "pinyin": "shū", "translation": "book", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

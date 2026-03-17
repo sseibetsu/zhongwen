@@ -1,0 +1,107 @@
+{
+  "title": "Go to School",
+  "description": "A longer text about daily school life.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      {
+        "hanzi": "每天",
+        "pinyin": "měi tiān",
+        "translation": "every day",
+        "hsk": 1
+      },
+      { "hanzi": "去", "pinyin": "qù", "translation": "go", "hsk": 1 },
+      {
+        "hanzi": "学校",
+        "pinyin": "xué xiào",
+        "translation": "school",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      {
+        "hanzi": "早上",
+        "pinyin": "zǎo shang",
+        "translation": "morning",
+        "hsk": 1
+      },
+      {
+        "hanzi": "八点",
+        "pinyin": "bā diǎn",
+        "translation": "eight o'clock",
+        "hsk": 1
+      },
+      { "hanzi": "到", "pinyin": "dào", "translation": "arrive", "hsk": 1 },
+      {
+        "hanzi": "学校",
+        "pinyin": "xué xiào",
+        "translation": "school",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "晚上",
+        "pinyin": "wǎn shang",
+        "translation": "evening",
+        "hsk": 1
+      },
+      {
+        "hanzi": "回家",
+        "pinyin": "huí jiā",
+        "translation": "go home",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "我", "pinyin": "wǒ", "translation": "I", "hsk": 1 },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      {
+        "hanzi": "学校",
+        "pinyin": "xué xiào",
+        "translation": "school",
+        "hsk": 1
+      },
+      { "hanzi": "学习", "pinyin": "xué xí", "translation": "study", "hsk": 1 },
+      {
+        "hanzi": "汉语",
+        "pinyin": "hàn yǔ",
+        "translation": "Chinese",
+        "hsk": 1
+      },
+      { "hanzi": "和", "pinyin": "hé", "translation": "and", "hsk": 1 },
+      {
+        "hanzi": "英语",
+        "pinyin": "yīng yǔ",
+        "translation": "English",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

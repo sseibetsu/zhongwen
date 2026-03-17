@@ -1,0 +1,168 @@
+{
+  "title": "First Day at a New Job",
+  "description": "A person starts a new job, meets colleagues, and slowly gets used to a different environment.",
+  "level": "HSK2",
+  "text": {
+    "words": [
+      {
+        "hanzi": "今天",
+        "pinyin": "jīn tiān",
+        "translation": "today",
+        "hsk": 1
+      },
+      { "hanzi": "是", "pinyin": "shì", "translation": "is", "hsk": 1 },
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      {
+        "hanzi": "第一天",
+        "pinyin": "dì yī tiān",
+        "translation": "first day",
+        "hsk": 2
+      },
+      {
+        "hanzi": "上班",
+        "pinyin": "shàng bān",
+        "translation": "go to work",
+        "hsk": 2
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      {
+        "hanzi": "有点",
+        "pinyin": "yǒu diǎn",
+        "translation": "a bit",
+        "hsk": 2
+      },
+      {
+        "hanzi": "紧张",
+        "pinyin": "jǐn zhāng",
+        "translation": "nervous",
+        "hsk": 3
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "但是", "pinyin": "dàn shì", "translation": "but", "hsk": 2 },
+      { "hanzi": "也", "pinyin": "yě", "translation": "also", "hsk": 1 },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      {
+        "hanzi": "高兴",
+        "pinyin": "gāo xìng",
+        "translation": "happy",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "公司",
+        "pinyin": "gōng sī",
+        "translation": "company",
+        "hsk": 2
+      },
+      { "hanzi": "里", "pinyin": "lǐ", "translation": "inside", "hsk": 1 },
+      { "hanzi": "的", "pinyin": "de", "translation": "particle", "hsk": 1 },
+      {
+        "hanzi": "同事",
+        "pinyin": "tóng shì",
+        "translation": "colleagues",
+        "hsk": 2
+      },
+      { "hanzi": "都", "pinyin": "dōu", "translation": "all", "hsk": 1 },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      {
+        "hanzi": "友好",
+        "pinyin": "yǒu hǎo",
+        "translation": "friendly",
+        "hsk": 2
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "他们", "pinyin": "tā men", "translation": "they", "hsk": 1 },
+      {
+        "hanzi": "帮助",
+        "pinyin": "bāng zhù",
+        "translation": "help",
+        "hsk": 2
+      },
+      { "hanzi": "他", "pinyin": "tā", "translation": "him", "hsk": 1 },
+      {
+        "hanzi": "了解",
+        "pinyin": "liǎo jiě",
+        "translation": "understand",
+        "hsk": 3
+      },
+      {
+        "hanzi": "工作",
+        "pinyin": "gōng zuò",
+        "translation": "work",
+        "hsk": 1
+      },
+      {
+        "hanzi": "内容",
+        "pinyin": "nèi róng",
+        "translation": "content",
+        "hsk": 3
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "下班",
+        "pinyin": "xià bān",
+        "translation": "finish work",
+        "hsk": 2
+      },
+      { "hanzi": "以后", "pinyin": "yǐ hòu", "translation": "after", "hsk": 2 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "觉得", "pinyin": "jué de", "translation": "feel", "hsk": 2 },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      {
+        "hanzi": "满意",
+        "pinyin": "mǎn yì",
+        "translation": "satisfied",
+        "hsk": 3
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

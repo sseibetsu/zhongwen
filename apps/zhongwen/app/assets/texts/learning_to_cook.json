@@ -1,0 +1,120 @@
+{
+  "title": "Learning to Cook",
+  "description": "Someone tries cooking for the first time, makes mistakes, but improves and enjoys the process.",
+  "level": "HSK2",
+  "text": {
+    "words": [
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "想", "pinyin": "xiǎng", "translation": "want", "hsk": 1 },
+      { "hanzi": "学习", "pinyin": "xué xí", "translation": "learn", "hsk": 1 },
+      { "hanzi": "做饭", "pinyin": "zuò fàn", "translation": "cook", "hsk": 2 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "第一次",
+        "pinyin": "dì yī cì",
+        "translation": "first time",
+        "hsk": 2
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "做", "pinyin": "zuò", "translation": "make", "hsk": 1 },
+      { "hanzi": "得", "pinyin": "de", "translation": "particle", "hsk": 2 },
+      { "hanzi": "不", "pinyin": "bù", "translation": "not", "hsk": 1 },
+      { "hanzi": "好", "pinyin": "hǎo", "translation": "good", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "饭", "pinyin": "fàn", "translation": "rice/meal", "hsk": 1 },
+      {
+        "hanzi": "有点",
+        "pinyin": "yǒu diǎn",
+        "translation": "a bit",
+        "hsk": 2
+      },
+      {
+        "hanzi": "难吃",
+        "pinyin": "nán chī",
+        "translation": "not tasty",
+        "hsk": 2
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "但是", "pinyin": "dàn shì", "translation": "but", "hsk": 2 },
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      {
+        "hanzi": "没有",
+        "pinyin": "méi yǒu",
+        "translation": "did not",
+        "hsk": 1
+      },
+      {
+        "hanzi": "放弃",
+        "pinyin": "fàng qì",
+        "translation": "give up",
+        "hsk": 3
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "后来",
+        "pinyin": "hòu lái",
+        "translation": "later",
+        "hsk": 2
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "他", "pinyin": "tā", "translation": "he", "hsk": 1 },
+      { "hanzi": "做", "pinyin": "zuò", "translation": "make", "hsk": 1 },
+      { "hanzi": "得", "pinyin": "de", "translation": "particle", "hsk": 2 },
+      {
+        "hanzi": "越来越",
+        "pinyin": "yuè lái yuè",
+        "translation": "more and more",
+        "hsk": 2
+      },
+      { "hanzi": "好", "pinyin": "hǎo", "translation": "good", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

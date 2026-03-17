@@ -1,0 +1,96 @@
+{
+  "title": "Waiting for the Bus",
+  "description": "A text about waiting for a bus.",
+  "level": "HSK1",
+  "text": {
+    "words": [
+      { "hanzi": "很多", "pinyin": "hěn duō", "translation": "many", "hsk": 1 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      {
+        "hanzi": "车站",
+        "pinyin": "chē zhàn",
+        "translation": "station",
+        "hsk": 1
+      },
+      { "hanzi": "等", "pinyin": "děng", "translation": "wait", "hsk": 1 },
+      { "hanzi": "车", "pinyin": "chē", "translation": "vehicle", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      {
+        "hanzi": "时间",
+        "pinyin": "shí jiān",
+        "translation": "time",
+        "hsk": 1
+      },
+      { "hanzi": "很", "pinyin": "hěn", "translation": "very", "hsk": 1 },
+      { "hanzi": "长", "pinyin": "cháng", "translation": "long", "hsk": 1 },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      {
+        "hanzi": "大家",
+        "pinyin": "dà jiā",
+        "translation": "everyone",
+        "hsk": 1
+      },
+      {
+        "hanzi": "有点",
+        "pinyin": "yǒu diǎn",
+        "translation": "a bit",
+        "hsk": 2
+      },
+      { "hanzi": "累", "pinyin": "lèi", "translation": "tired", "hsk": 1 },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      },
+
+      { "hanzi": "有的", "pinyin": "yǒu de", "translation": "some", "hsk": 2 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      { "hanzi": "看", "pinyin": "kàn", "translation": "look", "hsk": 1 },
+      {
+        "hanzi": "手机",
+        "pinyin": "shǒu jī",
+        "translation": "phone",
+        "hsk": 1
+      },
+      {
+        "hanzi": "，",
+        "pinyin": "",
+        "translation": "comma",
+        "hsk": 0,
+        "type": "punct"
+      },
+      { "hanzi": "有的", "pinyin": "yǒu de", "translation": "some", "hsk": 2 },
+      { "hanzi": "人", "pinyin": "rén", "translation": "people", "hsk": 1 },
+      { "hanzi": "在", "pinyin": "zài", "translation": "at", "hsk": 1 },
+      {
+        "hanzi": "说话",
+        "pinyin": "shuō huà",
+        "translation": "talk",
+        "hsk": 1
+      },
+      {
+        "hanzi": "。",
+        "pinyin": "",
+        "translation": "period",
+        "hsk": 0,
+        "type": "punct"
+      }
+    ]
+  }
+}

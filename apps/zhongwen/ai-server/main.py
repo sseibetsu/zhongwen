@@ -70,6 +70,7 @@ async def chat_endpoint(
         return {"reply": reply, "user_text": user_text}
 
     except Exception as e:
+        print(f"Error Log: {e}")
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         os.remove(tmp_path)
